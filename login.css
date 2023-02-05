@@ -1,0 +1,163 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Text&family=Poppins:wght@100;200;300;400&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    font-family: 'Poppins', sans-serif;
+}
+
+:root {
+    --purple: #58287F;
+    --green: #0B9444;
+    --chocolate: #1A0000;
+}
+
+body {
+    /* border: 2px solid red; */
+}
+
+/* <!-- UNIVERSAL --> */
+
+a:hover {
+    text-decoration: none;
+    transform: scale(1.02);
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-primary {
+    background-color: #58287F;
+    padding: 10px 20px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    font-size: 16px;
+    font-weight: 400;
+    cursor: pointer;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.btn-primary:hover {
+    transform: scale(1.02);
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+  /* HERO NAV  */
+
+  .hero-nav {
+    height: 100vh;
+    display: grid;
+    grid-template-rows: 15% 85%;
+}
+
+/* <!-- NAVBAR --> */
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 80px;
+}
+
+.navbar .nav-links ul li a {
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.navbar .nav-links ul li a:hover {
+    transform: scale(1.05);
+    transition: all 0.3s ease-in-out;
+    color: #58287F;
+}
+
+
+.navbar .logo img {
+    max-width: 150px;
+}
+
+
+.navbar .nav-links ul {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    list-style: none;
+}
+
+.navbar .nav-links ul li a {
+    color: black;
+}
+
+.navbar .navbar-cta a {
+    color: white;
+    text-decoration: none;
+}
+
+/* <------ LOGIN HERO -----> */
+
+.login-hero {
+    background-color: rgba(196, 196, 212, 0.25);
+    display: flex;
+    flex-direction: column;
+}
+
+.login-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 30px;
+    align-items: center;
+    margin: auto;
+    width: 50%;
+
+    border: 1px solid var(--purple);
+    border-radius: 10px;
+    background-color: white;
+}
+
+.login-container h1 {
+    font-size: 20px;    
+}
+
+.login-container h1 span {
+    color: var(--purple);
+}
+
+.login-container hr {
+    font-size: 30px;
+    font-weight: 500;
+    height: 2px;
+    width: 50%;
+}
+
+.input-container {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 10px;
+}
+
+.input-container input[type="text"]{
+    padding: 10px;
+    border: 1px solid var(--purple);
+    outline: none;
+    border-radius: 5px;
+}
+
+.input-container input[type="submit"]{
+    display: inline-block;
+    width: 50%;
+    margin: 0 auto;
+}
+
+.input-container a {
+    text-align: center;
+    text-decoration: none;
+    color: var(--purple);
+    padding: 5px;
+}
