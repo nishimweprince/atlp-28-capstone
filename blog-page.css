@@ -110,7 +110,7 @@ a:hover {
     display: flex;
     align-items: center;
     gap: 10px;
-    padding: 0 80px;
+    padding: 20px 80px;
 }
 
 .author img {
@@ -166,10 +166,11 @@ a:hover {
     /* border: 2px solid green; */
     display: flex;
     justify-content: center;
+    padding: 10px 80px;
 }
 
 .blog-image img {
-    width: 75%;
+    width: 100%;
 }
 
 /* <---- BLOG TEXT SECTION -------> */
@@ -207,6 +208,7 @@ a:hover {
 
 .create-comment h1 {
     text-align: center;
+    font-size: 30px;
 }
 
 .comment-form-container {
@@ -261,6 +263,7 @@ form textarea:focus {
     /* border: 2px solid green; */
     padding: 10px;
     width: 90%;
+    margin: 0 auto;
 }
 
 form input[type="text"], input[type="email"] {
@@ -328,6 +331,9 @@ form input:focus {
 
 .pagination a {
     text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .pagination a:hover {
@@ -350,12 +356,19 @@ form input:focus {
     border: 1px solid var(--purple);
     border-radius: 50%;
     text-align: center;
-    padding: 5px 12px;
+    padding: 6px 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .page-numbers-container ul li .page-number {
     font-size: 14px;
     font-weight: 500;
+}
+
+.page-numbers-container ul li .page-current {
+    padding: 8px 12px;
 }
 
 .page-numbers-container ul li .page-current:hover {
@@ -547,4 +560,273 @@ form input:focus {
     .copyright-footer p {
         font-size: 16px;
         font-weight: 500;
+    }
+
+    /* <----- RESPONSIVENESS------->  */
+
+    /* HAMBURGER MENU */
+
+    .hamburger {
+        display: none;
+    }
+
+    .hamburger a {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-decoration: none;
+        color: #58287F;
+    }
+
+    .hamburger a svg {
+        height: 50px;
+    }
+
+    /* SKILLS SECTION  */
+
+    .skills-carousel {
+        display: flex; 
+        align-items: center;
+        justify-content: center;
+    }
+
+    .carousel-direction a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-decoration: none;
+        color: white;
+        padding: 10px;
+        border-radius: 50%;
+        background-color: #58287F;
+    }
+
+    .carousel-direction a svg {
+        height: 20px;
+    }
+
+    .carousel-dots {
+        /* border: 2px solid red; */
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .dot {
+        height: 12px;
+        width: 12px;
+        border-radius: 50%;
+        background-color: white;
+        border: 1px solid #58287F;
+    }
+
+    .dot-fill {
+        background-color: #58287F;
+    }
+
+    .responsive {
+        display: none;
+    }
+
+    /* <----- MEDIA QUERIES ------->  */
+
+    @media screen and (max-width: 420px) {
+
+        /* NAVBAR  */
+        
+        .hero-nav {
+            height: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .navbar {
+            padding: 15px 50px;
+        }
+
+
+        .logo img {
+            height: 15px;
+        }
+
+        .nav-links, .navbar-cta {
+            display: none;
+        }
+
+        .hamburger {
+            display: block;
+        }
+
+        /* <--- HERO ---> */
+
+        .hero {
+            /* border: 2px solid red; */
+            gap: 10px;
+            padding: 20px;
+        }
+
+        .author {
+        padding: 20px;
+        }
+
+        .blog-title {
+            padding: 0 20px;
+        }
+
+        .blog-title h1 {
+            font-size: 20px;
+        }
+
+        .blog-title p {
+            font-size: 14px;
+        }
+
+        .blog-image {
+            padding: 0 10px;
+        }
+
+        /* BLOG TEXT  */
+
+        .blog-text {
+            padding: 20px;
+        }
+
+        .blog-text-container {
+            padding: 20px;
+        }
+
+        /* CREATE COMMENT  */
+
+        .create-comment {
+            /* border: 2px solid red; */
+            padding: 20px;
+        }
+
+        .create-comment h1 {
+            font-size: 30px;
+        }
+
+        .comment-form-container {
+            padding: 20px 40px;
+        }
+
+        .comment-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+        }
+
+        .input-container {
+            margin: 0;
+            width: 100%;
+        }
+
+        form input[type="text"], input[type="email"] {
+            width: 100%;
+        }
+
+        /* COMMENTS  */
+
+        .comments {
+            /* border: 2px solid red; */
+            padding: 20px 40px;
+        }
+
+        .comments h1 {
+            font-size: 30px;
+        }
+
+        .comments-container {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .comments-carousel {
+            display: flex;
+            align-items: center;
+        }
+
+        .comment-box {
+            display: none;
+        }
+
+        .comment-box:first-child {
+            display: block;
+        }
+
+        /* PAGINATION  */
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            gap: 20px;
+        }
+
+        .pagination a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+
+         /* <---- FOOTER ----> */
+
+         .footer {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding: 20px;
+            
+            /* border: 2px solid black; */
+        }
+
+        /* FOOTER UP  */
+
+        .footer-up {
+            display: flex;
+            flex-direction: column-reverse;
+            gap: 10px;
+        }
+
+        .form-container {
+            padding: 10px 20px;
+        }
+
+        .form-container h1 {
+            padding: 5px 0;
+        }
+
+        form {
+            padding: 10px 0;
+        }
+
+        .quick-links {
+            padding: 10px 20px;
+        }
+
+        /* FOOTER DOWN  */
+
+        .copyright-heading h1 {
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .copyright-heading h1 span {
+            color: #58287F;
+            font-size: 28px;
+        }
+
+        .copyright-heading p {
+            font-size: 14px;
+            font-weight: 400;
+        }
+
+        .copyright-social-icons ul li img {
+            height: 30px;
+        }
+
     }

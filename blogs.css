@@ -153,6 +153,7 @@ a:hover {
     gap: 15px;
     padding: 10px;
     cursor: pointer;
+    height: 400px;
 }
 
 .blog-box:hover {
@@ -163,7 +164,7 @@ a:hover {
 
 .blog-box #blog-image {
     background-image: url('./images/blog-image.jpg');
-    height: 250px;
+    height: 50%;
     background-size: cover;
     border-radius: 10px;
 }
@@ -432,3 +433,207 @@ form input[type="submit"] {
     font-size: 16px;
     font-weight: 500;
 }
+
+ /* <----- RESPONSIVENESS------->  */
+
+    /* HAMBURGER MENU */
+
+    .hamburger {
+        display: none;
+    }
+
+    .hamburger a {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-decoration: none;
+        color: #58287F;
+    }
+
+    .hamburger a svg {
+        height: 50px;
+    }
+
+    /* SKILLS SECTION  */
+
+    .skills-carousel {
+        display: flex; 
+        align-items: center;
+        justify-content: center;
+    }
+
+    .carousel-direction a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-decoration: none;
+        color: white;
+        padding: 10px;
+        border-radius: 50%;
+        background-color: #58287F;
+    }
+
+    .carousel-direction a svg {
+        height: 20px;
+    }
+
+    .carousel-dots {
+        /* border: 2px solid red; */
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .dot {
+        height: 12px;
+        width: 12px;
+        border-radius: 50%;
+        background-color: white;
+        border: 1px solid #58287F;
+    }
+
+    .dot-fill {
+        background-color: #58287F;
+    }
+
+    .responsive {
+        display: none;
+    }
+
+    /* <----- MEDIA QUERIES ------->  */
+
+    @media screen and (max-width: 420px) {
+
+        /* NAVBAR  */
+        
+        .hero-nav {
+            height: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .navbar {
+            padding: 15px 50px;
+        }
+
+
+        .logo img {
+            height: 15px;
+        }
+
+        .nav-links, .navbar-cta {
+            display: none;
+        }
+
+        .hamburger {
+            display: block;
+        }
+
+        /* <----- HERO ----> */
+
+        .blogs-hero {
+            /* border: 2px solid red; */
+            padding: 20px;
+            gap: 10px;
+        }
+
+        .blogs-hero h1 {
+            font-size: 20px;
+        }
+
+        .blogs-container {
+            display: flex;
+            flex-direction: column;
+            padding: 20px 40px;
+        }
+
+        .blog-box {
+            display: none;
+        }
+
+        .blog-box:first-child{
+            display: flex;
+        }
+
+        .blog-box {
+            gap: 10px;
+        }
+
+        .blog-box h1 {
+            font-size: 18px;
+        }
+
+        /* PAGINATION  */
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            gap: 20px;
+        }
+
+        .pagination a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* <---- FOOTER ----> */
+
+        .footer {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding: 20px;
+            
+            /* border: 2px solid black; */
+        }
+
+        /* FOOTER UP  */
+
+        .footer-up {
+            display: flex;
+            flex-direction: column-reverse;
+            gap: 10px;
+        }
+
+        .form-container {
+            padding: 10px 20px;
+        }
+
+        .form-container h1 {
+            padding: 5px 0;
+        }
+
+        form {
+            padding: 10px 0;
+        }
+
+        .quick-links {
+            padding: 10px 20px;
+        }
+
+        /* FOOTER DOWN  */
+
+        .copyright-heading h1 {
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .copyright-heading h1 span {
+            color: #58287F;
+            font-size: 28px;
+        }
+
+        .copyright-heading p {
+            font-size: 14px;
+            font-weight: 400;
+        }
+
+        .copyright-social-icons ul li img {
+            height: 30px;
+        }
+
+    }

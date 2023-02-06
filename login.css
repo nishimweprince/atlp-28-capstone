@@ -161,3 +161,120 @@ a:hover {
     color: var(--purple);
     padding: 5px;
 }
+
+/* <----- RESPONSIVENESS------->  */
+
+    /* HAMBURGER MENU */
+
+    .hamburger {
+        display: none;
+    }
+
+    .hamburger a {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-decoration: none;
+        color: #58287F;
+    }
+
+    .hamburger a svg {
+        height: 50px;
+    }
+
+    /* SKILLS SECTION  */
+
+    .skills-carousel {
+        display: flex; 
+        align-items: center;
+        justify-content: center;
+    }
+
+    .carousel-direction a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-decoration: none;
+        color: white;
+        padding: 10px;
+        border-radius: 50%;
+        background-color: #58287F;
+    }
+
+    .carousel-direction a svg {
+        height: 20px;
+    }
+
+    .carousel-dots {
+        /* border: 2px solid red; */
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .dot {
+        height: 12px;
+        width: 12px;
+        border-radius: 50%;
+        background-color: white;
+        border: 1px solid #58287F;
+    }
+
+    .dot-fill {
+        background-color: #58287F;
+    }
+
+    .responsive {
+        display: none;
+    }
+
+    /* <----- MEDIA QUERIES ------->  */
+
+    @media screen and (max-width: 420px) {
+
+        /* NAVBAR  */
+        
+        .hero-nav {
+            height: 100vh;
+            display: grid;
+            grid-template-rows: 15% 85%;
+        }
+
+        .navbar {
+            padding: 15px 50px;
+        }
+
+
+        .logo img {
+            height: 15px;
+        }
+
+        .nav-links, .navbar-cta {
+            display: none;
+        }
+
+        .hamburger {
+            display: block;
+        }
+
+        /* LOGIN HERO */
+
+        .login-hero {
+            padding: 20px 40px;
+        }
+
+        .login-container {
+            width: 100%;
+            padding: 20px;
+        }
+
+        .login-container hr {
+            width: 100%;
+        }
+
+        .input-container {
+            width: 100%;
+        }
+
+    }
