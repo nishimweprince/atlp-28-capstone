@@ -54,22 +54,22 @@ a:hover {
     grid-template-rows: 15% 85%;
 }
 
-/* <!-- NAVBAR --> */
+  /* <!-- NAVBAR --> */
 
-.navbar {
+  .navbar {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0 80px;
 }
 
-.navbar .nav-links ul li a {
+.nav-links ul li a {
     text-decoration: none;
     font-size: 18px;
     font-weight: 500;
 }
 
-.navbar .nav-links ul li a:hover {
+.nav-links ul li a:hover {
     transform: scale(1.05);
     transition: all 0.3s ease-in-out;
     color: #58287F;
@@ -81,18 +81,18 @@ a:hover {
 }
 
 
-.navbar .nav-links ul {
+.nav-links ul {
     display: flex;
     align-items: center;
     gap: 40px;
     list-style: none;
 }
 
-.navbar .nav-links ul li a {
+.nav-links ul li a {
     color: black;
 }
 
-.navbar .navbar-cta a {
+.navbar-cta a {
     color: white;
     text-decoration: none;
 }
@@ -183,6 +183,10 @@ a:hover {
         height: 50px;
     }
 
+    .hamburger .is-not-active {
+        display: none;
+    }
+
     /* SKILLS SECTION  */
 
     .skills-carousel {
@@ -229,10 +233,43 @@ a:hover {
         display: none;
     }
 
+    .hero-nav .hide-nav {
+        display: none;
+    }
+
     /* <----- MEDIA QUERIES ------->  */
 
     @media screen and (max-width: 420px) {
 
+        /* <---- RESPONSIVE NAVBAR ----> */
+
+        .responsive-nav {
+            position: relative;
+            top: 0;
+            width: 90%;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            background-color: white;
+        }
+
+        .responsive-nav .nav-links ul {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .responsive-nav .navbar-cta {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+        
         /* NAVBAR  */
         
         .hero-nav {
@@ -250,7 +287,7 @@ a:hover {
             height: 15px;
         }
 
-        .nav-links, .navbar-cta {
+        .navbar .nav-links, .navbar .navbar-cta {
             display: none;
         }
 
