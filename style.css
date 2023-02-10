@@ -501,7 +501,7 @@
       border-radius: 10px;
   }
 
-  .blog-box h1 {
+  .blog-text h1 {
       font-size: 20px;
       padding: 10px 20px;
       font-weight: 600;
@@ -549,7 +549,8 @@
   /* FOOTER UP  */
 
   .footer-up {
-      display: flex;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
       gap: 20px;
       justify-content: space-between;
       margin: 20px 0;
@@ -566,11 +567,12 @@
     display: flex;
     flex-direction: column;
     gap: 5px;
-    width: 60%;
+    width: 100%;
   }
 
   .newsletter form {
     padding: 10px 0;
+    width: 60%;
   }
 
   .form-submit input[type="submit"] {
@@ -836,6 +838,369 @@
   }
 
   /* <----- MEDIA QUERIES ------->  */
+
+  /* <--- 1000PX ---> */
+
+  @media screen and (max-width: 1000px){
+
+    /* HERO  */
+
+    .hero {
+        height: 100%;
+        padding: 10px 50px;
+    }
+
+    /* FOOTER  */
+
+    .footer {
+        padding: 20px 50px;
+    }
+
+  }
+
+  /* <---- 950PX ----> */
+
+  @media screen and (max-width: 950px) {
+
+        /* HERO  */
+    
+        .hero {
+            padding: 10px 30px;
+        }
+    
+        /* FOOTER  */
+    
+        .footer-up {
+            padding: 20px 30px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        form {
+            max-width: 50%;
+        }
+        
+        .form-container {
+            padding: 20px 0;
+        }
+
+  }
+
+  /* <---- 800 PX ----> */
+
+  @media screen and (max-width: 800px) {
+
+     /* NAVBAR  */
+
+     .responsive-nav {
+        position: absolute;
+        z-index: 100;
+        top: 15%;
+        width: 100%;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        padding: 10px 0 30px;
+        gap: 10px;
+        background-color: white;
+        transition: 0.8s all ease-in-out;
+    }
+
+    .responsive-nav .nav-links ul {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        padding: 20px;
+    }
+
+    .responsive-nav .navbar-cta {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+    }
+
+    /* NAVBAR  */
+
+    .hero-nav {
+        position: relative;
+          height: auto;
+          display: flex;
+          flex-direction: column;
+      }
+
+      .navbar {
+          padding: 15px 50px;
+      }
+
+
+      .logo img {
+          height: 15px;
+      }
+
+      .navbar .nav-links,
+      .navbar .navbar-cta {
+          display: none;
+      }
+
+      .hamburger {
+          display: block;
+      }
+    
+        /* HERO  */
+    
+        .hero {
+            padding: 10px 50px;
+        }
+
+        /* PORTFOLIO  */
+
+        .portfolio {
+            padding: 20px 40px;
+        }
+
+        .portfolio-box {
+            padding: 10px 20px;
+        }
+
+        /* SKILLS  */
+
+        .skills-container {
+            padding: 20px 50px;
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .skill-box {
+            padding: 30px;
+        }
+
+        /* EXPERIENCE  */
+
+        .experience-box {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .experience-logo {
+            margin: 0 auto;
+        }
+
+        .experience-header h1 {
+            text-align: left;
+            font-size: 20px;
+        }
+
+        /* BLOGS */
+
+        .blogs {
+            padding: 20px 30px;
+        }
+
+        .blog-text h1 {
+            font-size: 16px;
+            padding: 10px;
+        }
+
+        .blog-text p {
+            padding: 10px;
+        }
+    
+        /* FOOTER  */
+    
+        .footer-up {
+            padding: 20px 20px;
+            display: flex;
+            flex-direction: column;
+        }
+    
+        form {
+            max-width: 50%;
+        }
+        
+        .form-container {
+            padding: 20px 0;
+        }
+    
+  }
+
+  /* <---- 700 PX ----> */
+
+  @media screen and (max-width: 700px) {
+    
+    /* HERO */
+
+    .hero {
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: space-between;
+        padding: 10px 70px;
+        gap: 30px;
+    }
+
+    .hero-image {
+        padding: 0 50px;
+    }
+
+    .hero-text-heading {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 10px 0 0 0;
+        text-align: center;
+    }
+
+    .hero-cta {
+        margin: 0 auto;
+    }
+
+    /* ABOUT  */
+
+    .about-text {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding: 20px 50px;
+    }
+
+    .about-text hr {
+        margin: -40px 0 0 0;
+        max-width: 50%;
+    }
+
+    /* SKILLS  */
+
+    .skills-container {
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .skill-box {
+        display: none;
+        padding: 50px;
+    }
+
+    .skill-box:first-child {
+        display: flex;
+    }
+
+    /* PORTFOLIO  */
+
+    .portfolio {
+        padding: 10px 20px;
+    }
+
+    .portfolio-container {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .portfolio-carousel {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .portfolio-box {
+        display: none;
+    }
+
+    .portfolio-box:first-child {
+        display: flex;
+    }
+
+    /* EXPERIENCE  */
+
+    .experience {
+        padding: 10px 40px;
+    }
+
+    .experience-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .experience-box {
+        height: auto;
+        display: none;
+        padding: 10px 30px;
+        width: 80%;
+        background-color: white;
+        border: 1px solid #58287F;
+
+        /* border: 2px solid red; */
+    }
+
+    .experience-box:first-child {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .experience-carousel {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .experience-description {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+    }
+
+    /* BLOGS */
+
+    .blog-box {
+        display: none;
+        padding: 0 0 20px;
+        width: 80%;
+    }
+
+    .blogs-container {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .blog-box:first-child {
+        display: flex;
+    }
+
+    .blogs-carousel {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .carousel-direction {
+        display: block;
+    }
+
+    .carousel-dots {
+        display: flex;
+        justify-content: center;
+        padding: 10px;
+    }
+
+    /* FOOTER  */
+
+    .form-container form {
+        max-width: 70%;
+    }
+
+  }
+
+  /* <---- MOBILE  ----> */ 
 
   @media screen and (max-width: 420px) {
 
