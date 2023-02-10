@@ -775,41 +775,63 @@
 
         <div class="footer-up">
 
-            <div class="quick-links">
+            <span>
+                <div class="quick-links">
 
-                <h1>
-                    Quick Links
-                </h1>
+                    <h1>
+                        Quick Links
+                    </h1>
+    
+                    <ul>
+    
+                        <li>
+                            <a href="#">
+                                About
+                            </a>
+                        </li>
+    
+                        <li>
+                            <a href="#">
+                                Blog
+                            </a>
+                        </li>
+    
+                        <li>
+                            <a href="#">
+                                Contact
+                            </a>
+                        </li>
+    
+                        <li>
+                            <a id="admin-link" href="./login.html">
+                                Admin
+                            </a>
+                        </li>
+    
+                    </ul>
+    
+                </div>
 
-                <ul>
-
-                    <li>
-                        <a href="#">
-                            About
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="#">
-                            Blog
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="#">
-                            Contact
-                        </a>
-                    </li>
-
-                    <li>
-                        <a id="admin-link" href="#">
-                            Admin
-                        </a>
-                    </li>
-
-                </ul>
-
-            </div>
+                <div class="newsletter">
+                        
+                        <h1>
+                            Newsletter
+                        </h1>
+    
+                        <p>
+                            Subscribe to our newsletter and get our latest news and updates.
+                        </p>
+    
+                        <form id="newsletter-form" action="">
+                            <input type="email" id="newsletter-email" placeholder="Email">
+                            <p id="newsletter-error">Please enter a valid email</p>
+                            <p id="newsletter-success">You have subscribed to our newsletter successfully!</p>
+                            <div class="form-submit">
+                                <input class="btn-primary" id="newsletter-submit" type="submit" value="Subscribe">
+                            </div>
+                        </form>
+                </div>
+            </span>
 
             <div class="form-container" id="footer-form">
 
@@ -818,11 +840,27 @@
                 </h1>
 
                 <form action="">
-                    <input type="text" placeholder="Name">
-                    <input type="email" placeholder="Email">
-                    <textarea name="" id="" cols="50" rows="5" placeholder="Message"></textarea>
+                    <input type="text" id="contact-form-name" placeholder="Name">
+                    <p id="contact-name-error">
+                        Please enter a valid name
+                    </p>
+                    <input type="email" id="contact-form-email" placeholder="Email">
+                    <p id="contact-email-error">
+                        Please enter a valid email
+                    </p>
+                    <textarea name="" id="contact-form-message" cols="50" rows="5" placeholder="Message"></textarea>
+                    <p id="contact-message-error">
+                        Please enter a valid message
+                    </p>
+                    <p id="contact-form-success">
+                        Thank you for reaching out!
+                        I will respond ASAP!
+                    </p>
+                    <p id="contact-form-error">
+                        Please make sure you have provided valid information
+                    </p>
                     <div class="form-submit">
-                        <input class="btn-primary" type="submit" value="Send">
+                        <input class="btn-primary" id="contact-form-submit" type="submit" value="Send">
                     </div>
                 </form>
 
