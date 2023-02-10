@@ -780,8 +780,9 @@
       display: none;
   }
 
-  .hero-nav .hide-nav {
-      display: none;
+  .hide-nav {
+    transform: translateY(-150%);
+    transition: 0.8s all ease-in-out;
   }
 
   /* <----- MEDIA QUERIES ------->  */
@@ -791,14 +792,17 @@
       /* <---- RESPONSIVE NAVBAR ----> */
 
       .responsive-nav {
-          position: relative;
-          top: 0;
-          width: 90%;
+          position: absolute;
+          z-index: 100;
+          top: 15%;
+          width: 100%;
           margin: 0 auto;
           display: flex;
           flex-direction: column;
+          padding: 10px 0 30px;
           gap: 10px;
           background-color: white;
+          transition: 0.8s all ease-in-out;
       }
 
       .responsive-nav .nav-links ul {
@@ -820,6 +824,7 @@
       /* NAVBAR  */
 
       .hero-nav {
+        position: relative;
           height: auto;
           display: flex;
           flex-direction: column;
