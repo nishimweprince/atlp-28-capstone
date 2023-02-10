@@ -785,6 +785,10 @@
     transition: 0.8s all ease-in-out;
   }
 
+  .responsive-nav {
+    display: none;
+  }
+
   /* <----- MEDIA QUERIES ------->  */
 
   @media screen and (max-width: 420px) {
