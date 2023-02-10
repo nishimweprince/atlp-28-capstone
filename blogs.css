@@ -156,6 +156,11 @@ a:hover {
     height: 400px;
 }
 
+.blog-box {
+    text-decoration: none;
+    color: black;
+}
+
 .blog-box:hover {
     transform: scale(1.02);
     transition: all 0.4s ease-in-out;

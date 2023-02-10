@@ -158,12 +158,10 @@ body {
 
 /* <-----  DASHBOARD  GRAPH-----> */
 
-.dashboard-graph {
-    /* border: 2px solid black; */
+/* .dashboard-graph {
+    border: 2px solid black;
     height: 100vh;
     background-color: azure;
-}
-
 /* <---- CREATE BLOG -----> */
 
 .create-blog {

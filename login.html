@@ -75,7 +75,7 @@
 
         <div class="login-hero">
 
-           <form action="#" class="login-container">
+           <form action="" id="login-form" class="login-container">
 
             <h1>
                 Log into <span>Admin</span> account
@@ -83,16 +83,22 @@
             <hr>
 
             <span class="input-container">
-                <label for="username">Username</label>
-                <input type="text" id="username">
+                <label for="username">Email</label>
+                <input type="text" id="login-email">
+                <p id="login-email-error">
+                    Please enter a valid email address
+                </p>
             </span>
             <span class="input-container">
                 <label for="username">Password</label>
-                <input type="text" id="username">
+                <input type="password" id="login-password">
+                <p id="login-password-error">
+                 Please enter a password
+                </p>
             </span>
 
             <span class="input-container">
-            <input type="submit" value="Login" class="btn-primary">
+            <input type="submit" value="Login" id="login-submit" class="btn-primary">
             <a href="#">
                 Forgot password?
             </a>
@@ -103,6 +109,6 @@
         </div>
     
 
-<script src="index.js"></script>
+<script src="login.js"></script>
 </body>
 </html>
