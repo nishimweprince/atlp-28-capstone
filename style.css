@@ -422,7 +422,7 @@
   }
 
   .experience-header {
-      height: 100px;
+      height: auto;
       padding: 10px;
   }
 
@@ -1196,6 +1196,18 @@
 
     .form-container form {
         max-width: 70%;
+    }
+
+  }
+
+  /* <---- 550PX ----> */
+
+  @media screen and (max-width: 550px) { 
+
+    /* HERO  */
+
+    .hero-image {
+        padding: 20px;
     }
 
   }

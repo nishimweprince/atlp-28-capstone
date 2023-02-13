@@ -221,6 +221,9 @@ a:hover {
 
 .pagination a {
     text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .pagination a:hover {
@@ -728,7 +731,16 @@ form input[type="submit"] {
 
         .blogs-container {
             padding: 20px 20px;
-            grid-template-columns: repeat(1, 1fr);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .blog-box {
+            display: none;
+        }
+
+        .blog-box:first-child {
+            display: flex;
         }
 
         /* FOOTER  */
