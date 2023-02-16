@@ -45,21 +45,35 @@ let showSlide = (slide) => {
                 dot.classList.add("dot-fill");
             }
         });
+      
     });
 
 };
 
 // CAROUSEL NAVIGATION
 
-carouselLeft.forEach((left, index) => {
-  left.addEventListener("click", (e) => {
-    e.preventDefault();
-    currentSlide--;
-    if (currentSlide < 0) {
-      currentSlide = boxes.length - 1;
+carouselLeft.forEach((left, index, arr) => {
+
+    for (let index = 0; index < arr.length; index++){
+        left.addEventListener("click", (e) => {
+            e.preventDefault();
+            currentSlide--;
+            if (currentSlide < 0) {
+            //   currentSlide = Array.from(boxContainer[index].children).length - 1;
+              console.log(boxContainer[index].children);
+            }
+            showSlide(currentSlide);
+          });
     }
-    showSlide(currentSlide);
-  });
+
+//   left.addEventListener("click", (e) => {
+//     e.preventDefault();
+//     currentSlide--;
+//     if (currentSlide < 0) {
+//       currentSlide = boxes.length - 1;
+//     }
+//     showSlide(currentSlide);
+//   });
 });
 
 carouselRight.forEach((right, index) => {
