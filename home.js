@@ -66,14 +66,6 @@ carouselLeft.forEach((left, index, arr) => {
           });
     }
 
-//   left.addEventListener("click", (e) => {
-//     e.preventDefault();
-//     currentSlide--;
-//     if (currentSlide < 0) {
-//       currentSlide = boxes.length - 1;
-//     }
-//     showSlide(currentSlide);
-//   });
 });
 
 carouselRight.forEach((right, index) => {
