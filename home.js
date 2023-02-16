@@ -30,41 +30,39 @@ const createDots = (arr) => {
 
 // SHOW SKILL
 
-let showSlide = (slide) => {
-  
-    Array.from(boxContainer).forEach((box, index) => {
-        Array.from(box.children).forEach((child, index) => {
-            child.style.display = "none";
-            if (index == slide) {
-                child.style.display = "flex";
-            }
-        });
-        Array.from(dotsContainer[index].children).forEach((dot, index) => {
-            dot.classList.remove("dot-fill");
-            if (index == slide) {
-                dot.classList.add("dot-fill");
-            }
-        });
-      
-    });
+let showSlide = (boxContainer, dotsContainer, slide) => {
+  Array.from(boxContainer.children).forEach((child, index) => {
+      child.style.display = "none";
+      if (index == slide) {
+          child.style.display = "flex";
+      }
+  });
 
+  Array.from(dotsContainer.children).forEach((dot, index) => {
+      dot.classList.remove("dot-fill");
+      if (index == slide) {
+          dot.classList.add("dot-fill");
+      }
+  });
 };
 
 // CAROUSEL NAVIGATION
 
-carouselLeft.forEach((left, index, arr) => {
+carouselLeft.forEach((left, index) => {
 
-    for (let index = 0; index < arr.length; index++){
-        left.addEventListener("click", (e) => {
-            e.preventDefault();
-            currentSlide--;
-            if (currentSlide < 0) {
-            //   currentSlide = Array.from(boxContainer[index].children).length - 1;
-              console.log(boxContainer[index].children);
-            }
-            showSlide(currentSlide);
-          });
-    }
+    left.addEventListener("click", (e) => {
+        e.preventDefault();
+        const targetCarousel = e.target.closest(".section").getAttribute("data-carousel");
+        const targetBoxContainer = document.querySelector(`[data-carousel="${targetCarousel}"] .carousel-container .box-container`);
+        const targetDotsContainer = document.querySelector(`[data-carousel="${targetCarousel}"] .carousel-dots`);
+        console.log(targetDotsContainer);
+
+        currentSlide--;
+        if (currentSlide < 0) {
+            currentSlide = targetBoxContainer.children.length - 1;
+        }
+        showSlide(targetBoxContainer, targetDotsContainer, currentSlide);
+    });
 
 });
 
@@ -72,11 +70,16 @@ carouselRight.forEach((right, index) => {
 
   right.addEventListener("click", (e) => {
     e.preventDefault();
+
+    const targetCarousel = e.target.closest(".section").getAttribute("data-carousel");
+    const targetBoxContainer = document.querySelector(`[data-carousel="${targetCarousel}"] .carousel-container .box-container`);
+    const targetDotsContainer = document.querySelector(`[data-carousel="${targetCarousel}"] .carousel-dots`);
+
     currentSlide++;
-    if (currentSlide > boxes.length - 1) {
+    if (currentSlide > targetBoxContainer.children.length - 1) {
       currentSlide = 0;
     }
-    showSlide(currentSlide);
+    showSlide(targetBoxContainer, targetDotsContainer, currentSlide);
   });
 });
 
@@ -85,6 +88,3 @@ window.onload = () => {
     dotsContainer[index].append(...createDots(box.children));
   });
 };
-
-// SHOW THE FIRST SKILL
-showSlide(currentSlide);
