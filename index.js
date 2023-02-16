@@ -86,3 +86,7 @@ contact_submit.addEventListener("click", (e) => {
         console.log(contact_message.value);
     }
 });
+
+
+// <---- PAGINATION ---->
+

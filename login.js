@@ -12,15 +12,12 @@ login_submit.addEventListener("click", (e) => {
     const emailRegex = /^([a-zA-Z0-9\._]+)@([a-zA-Z0-9])+.([a-z]+)(.[a-z]+)(.[a-z]+)?$/;
     const nameRegex = /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/;
 
-    if (emailRegex.test(login_email.value)) {
+    if ((emailRegex.test(login_email.value)
+        && nameRegex.test(login_password.value)
+    )) {
         login_email_error.style.display = "none";
         login_email.value = "";
         login_form.action = './dashboard-home.html'
-    }
-
-    else if (nameRegex.test(login_password.value)) {
-        login_password_error.style.display = "block";
-        console.log("error");
     }
 
     else {

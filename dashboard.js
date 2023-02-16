@@ -1,3 +1,5 @@
+//NAVBAR
+
 let hamburger_menu = document.querySelectorAll(".hamburger-icon");
 let responsive_nav = document.querySelector(".navbar");
 
@@ -16,3 +18,4 @@ hamburger_menu[1].addEventListener("click", () => {
     responsive_nav.classList.toggle("hide-nav");
 
 });
+

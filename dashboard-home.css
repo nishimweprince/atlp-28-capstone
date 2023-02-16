@@ -161,6 +161,7 @@ body {
 .dashboard-graph {
     border: 2px solid black;
     height: 100vh;
+    display: none;
 }
 
 .dashboard-graph h1 {
