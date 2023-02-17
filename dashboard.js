@@ -1,3 +1,7 @@
+if (sessionStorage.getItem("isLoggedIn") !== "true") {
+    window.location.href = './login.html';
+}
+
 //NAVBAR
 
 let hamburger_menu = document.querySelectorAll(".hamburger-icon");

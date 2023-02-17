@@ -165,7 +165,7 @@ a:hover {
 
 /* <--- LOGIN VALIDATIONS ---> */
 
-#login-email-error, #login-password-error {
+#login-email-error, #login-password-error, #credentials-error {
     color: red;
     display: none;
 }
