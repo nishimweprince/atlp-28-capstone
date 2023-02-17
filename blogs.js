@@ -6,7 +6,7 @@ let posts = localStorage.getItem("posts")
 
 // RENDER POSTS BLOGS PAGE
 
-let renderPosts = (arr) => {
+let renderPostsAll = (arr) => {
   let blogs_container = document.getElementsByClassName("blogs-container");
 
 
@@ -47,9 +47,5 @@ let renderPosts = (arr) => {
 };
 
 window.onload = () => {
-  renderPosts(posts);
-  console.log(posts);
+  renderPostsAll(posts);
 };
-
-
-// SINGLE BLOG PAGE
