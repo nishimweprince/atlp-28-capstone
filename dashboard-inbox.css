@@ -220,6 +220,8 @@ body {
     padding: 10px 20px;
     align-self: center;
     justify-self: center;
+
+    display: none;
 }
 
 .pagination a {
@@ -356,6 +358,11 @@ body {
 
     .message-box {
         text-align: center;
+        display: none;
+    }
+
+    .message-box:first-child {
+        display: flex;
     }
 
     .message-box #message-heading {

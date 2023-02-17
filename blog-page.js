@@ -6,6 +6,9 @@ console.log(posts);
 
 // SINGLE BLOG PAGE
 
+let paginationLeft = document.querySelector(".direction-left");
+let paginationRight = document.querySelector(".direction-right");
+
 let blog_title = document.querySelector(".blog-title");
 
 let blog_text = document.querySelector(".blog-text-container");
@@ -42,6 +45,8 @@ let comment_name = document.getElementById("comment-name");
 let comment_email = document.getElementById("comment-email");
 let comment_body = document.getElementById("comment-body");
 let comment_submit = document.getElementById("comment-submit");
+let comments_container = document.querySelector(".comments-container");
+
 
 let comments = localStorage.getItem("comments") ? JSON.parse(localStorage.getItem("comments")) : [];
 
@@ -95,15 +100,11 @@ const createComment = (e) => {
     comment_email.value = "";
     comment_body.value = "";
 
-    console.log(comments);
+    console.log(comment_submit);
 
 };
 
-comment_submit.addEventListener("click", createComment);
-
 // RENDER COMMENTS
-
-let comments_container = document.querySelector(".comments-container");
 
 let renderComments = (arr) => {
 
@@ -137,6 +138,75 @@ window.onload = () => {
     renderSingleBlog(posts);
     renderComments(comments);
     console.log(comments);
-  };
+};
 
-export {comments, comments_container}
+// <---- PAGINATION ---->
+
+
+let page_container = document.querySelector(".page-numbers-container");
+
+let currentPage = 0;
+
+
+let createPages = (arr) => {
+    let pages = document.createElement("ul");
+
+    arr.forEach((element, index) => {
+        let list = document.createElement("li");
+        let page_number = document.createElement("a");
+        page_number.classList.add("page-number");
+        if (index == 0) {
+            page_number.classList.add("page-current");
+        }
+        page_number.innerText = index + 1;
+        list.appendChild(page_number);
+        pages.appendChild(list);
+
+    });
+    page_container.appendChild(pages);
+    console.log(pages);
+}
+
+let showSlide = (slide) => {
+    Array.from(comments_container.children).forEach((child, index) => {
+        child.style.display = "none";
+      if (index == slide) {
+          child.style.display = "flex";
+      }
+    });
+    Array.from(page_container.children[0].children).forEach((child, index) => {
+        child.children[0].classList.remove("page-current");
+        if (index == slide) {
+            child.children[0].classList.add("page-current");
+        }
+    });
+};
+
+paginationLeft.addEventListener("click", (e) => {
+    e.preventDefault();
+    currentPage--;
+    if (currentPage < 0) {
+        currentPage = comments_container.children.length - 1;
+    }
+
+    showSlide(currentPage);
+
+});
+
+paginationRight.addEventListener("click", (e) => {
+        e.preventDefault();
+        currentPage++;
+        if (currentPage > comments_container.children.length - 1) {
+            currentPage = 0;
+        }
+    
+        showSlide(currentPage);
+});
+
+export {createPages}
+
+document.addEventListener("DOMContentLoaded", createPages(comments));
+
+comment_submit.addEventListener("click", createComment);
+
+export {comments, comments_container, comment_submit, paginationLeft, paginationRight}

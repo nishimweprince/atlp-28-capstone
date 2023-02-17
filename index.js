@@ -1,4 +1,56 @@
-import { comments, comments_container } from "./blog-page.js";
+
+// <--- SMTP CREDENTIALS ---->
+/*
+Username: princeelysee@gmail.com
+Password: 9182787AF9362A31F79FCB4D9FFFE01F3905
+Server: smtp.elasticemail.com
+Port: 2525
+Security token: 6f7acccb-1b5d-46f5-86c3-45c7af504c84
+*/
+
+/* SmtpJS.com - v3.0.0 */
+var Email = {
+  send: function (a) {
+    return new Promise(function (n, e) {
+      (a.nocache = Math.floor(1e6 * Math.random() + 1)), (a.Action = "Send");
+      var t = JSON.stringify(a);
+      Email.ajaxPost("https://smtpjs.com/v3/smtpjs.aspx?", t, function (e) {
+        n(e);
+      });
+    });
+  },
+  ajaxPost: function (e, n, t) {
+    var a = Email.createCORSRequest("POST", e);
+    a.setRequestHeader("Content-type", "application/x-www-form-urlencoded"),
+      (a.onload = function () {
+        var e = a.responseText;
+        null != t && t(e);
+      }),
+      a.send(n);
+  },
+  ajax: function (e, n) {
+    var t = Email.createCORSRequest("GET", e);
+    (t.onload = function () {
+      var e = t.responseText;
+      null != n && n(e);
+    }),
+      t.send();
+  },
+  createCORSRequest: function (e, n) {
+    var t = new XMLHttpRequest();
+    return (
+      "withCredentials" in t
+        ? t.open(e, n, !0)
+        : "undefined" != typeof XDomainRequest
+        ? (t = new XDomainRequest()).open(e, n)
+        : (t = null),
+      t
+    );
+  },
+};
+
+let messages = localStorage.getItem('messages')
+? JSON.parse(localStorage.getItem('messages')) : [];
 
 // <---- HAMBURGER MENU ---->
 
@@ -58,12 +110,31 @@ newsletter_submit.addEventListener("click", (e) => {
 
 // <---- FORM VALIDATIONS ---->
 
-let contact_name = document.getElementById("contact-form-name");
-let contact_email = document.getElementById("contact-form-email");
-let contact_message = document.getElementById("contact-form-message");
-let contact_submit = document.getElementById("contact-form-submit");
+const contact_name = document.getElementById("contact-form-name");
+const contact_email = document.getElementById("contact-form-email");
+const contact_message = document.getElementById("contact-form-message");
+const contact_submit = document.getElementById("contact-form-submit");
 
+contact_submit.addEventListener('click', (e) => {
 
+  const contact_name = document.getElementById("contact-form-name");
+  const contact_email = document.getElementById("contact-form-email");
+  const contact_message = document.getElementById("contact-form-message");
+
+  e.preventDefault();
+
+  let messageObj = {
+    name: contact_name.value,
+    email: contact_email.value,
+    body: contact_message.value,
+    date: date()
+  }
+
+  messages.push(messageObj);
+  localStorage.setItem('messages', JSON.stringify(messages));
+
+  console.log(messages);
+})
 contact_submit.addEventListener("click", (e) => {
     e.preventDefault();
     const emailRegex = /^([a-zA-Z0-9\._]+)@([a-zA-Z0-9])+.([a-z]+)(.[a-z]+)(.[a-z]+)?$/;
@@ -76,8 +147,6 @@ contact_submit.addEventListener("click", (e) => {
     {
         contact_form_error.style.display = "none";
         contact_form_success.style.display = "block";
-        console.log("success");
-
         contact_name.value = "";
         contact_email.value = "";
         contact_message.value = "";
@@ -87,72 +156,53 @@ contact_submit.addEventListener("click", (e) => {
         contact_form_success.style.display = "none";
         console.log(contact_message.value);
     }
+
+    // <---- SEND EMAIL ---->
+
+
+    Email.send({
+      SecureToken: "6f7acccb-1b5d-46f5-86c3-45c7af504c84",
+      To: "princeelysee@gmail.com",
+      From: "princeelysee@gmail.com",
+      Subject: `${contact_name.value} has contacted you from the website form`,
+      Body: `
+      ${contact_name.value} has sent you a message:
+  
+      ${contact_message.value}
+      `,
+    }).then((message) => {
+      alert('We have received your message in our inbox');
+      console.log(message, contact_email.value);
+    }).catch((error) => {
+      console.log(error)
+    })
+    ;
+
 });
 
-// <---- PAGINATION ---->
+// GET DATE
 
-let paginationLeft = document.querySelector(".direction-left");
-let paginationRight = document.querySelector(".direction-right");
-let page_container = document.querySelector(".page-numbers-container");
+const date = () => {
+  const now = new Date(Date.now());
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  const day = now.getDate();
+  const monthIndex = now.getMonth();
+  const year = now.getFullYear();
 
-let currentPage = 0;
+  const formattedDate = `${day} ${months[monthIndex]} ${year}`;
 
-
-let createPages = (arr) => {
-    let pages = document.createElement("ul");
-
-    arr.forEach((element, index) => {
-        let list = document.createElement("li");
-        let page_number = document.createElement("a");
-        page_number.classList.add("page-number");
-        if (index == 0) {
-            page_number.classList.add("page-current");
-        }
-        page_number.innerText = index + 1;
-        list.appendChild(page_number);
-        pages.appendChild(list);
-
-    });
-    page_container.appendChild(pages);
-    console.log(pages);
-}
-
-let showSlide = (slide) => {
-    Array.from(comments_container.children).forEach((child, index) => {
-        child.style.display = "none";
-      if (index == slide) {
-          child.style.display = "flex";
-      }
-    });
-    Array.from(page_container.children[0].children).forEach((child, index) => {
-        child.children[0].classList.remove("page-current");
-        if (index == slide) {
-            child.children[0].classList.add("page-current");
-        }
-    });
+  return formattedDate;
 };
-
-paginationLeft.addEventListener("click", (e) => {
-    e.preventDefault();
-    currentPage--;
-    if (currentPage < 0) {
-        currentPage = comments_container.children.length - 1;
-    }
-
-    showSlide(currentPage);
-
-});
-
-paginationRight.addEventListener("click", (e) => {
-        e.preventDefault();
-        currentPage++;
-        if (currentPage > comments_container.children.length - 1) {
-            currentPage = 0;
-        }
-    
-        showSlide(currentPage);
-});
-
-export {createPages}
-
-document.addEventListener("DOMContentLoaded", createPages(comments));
