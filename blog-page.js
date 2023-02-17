@@ -16,8 +16,8 @@ let renderSingleBlog = (arr) => {
   let blog = arr[3];
 
   // BLOG HEADING
-  blog_heading = document.createElement("h1");
-  blog_date = document.createElement("p");
+  let blog_heading = document.createElement("h1");
+  let blog_date = document.createElement("p");
   blog_date.innerText = "12 May 2021";
   blog_heading.innerText = blog.title;
 
@@ -31,7 +31,7 @@ let renderSingleBlog = (arr) => {
 
 
   // BLOG TEXT
-  blog_body = document.createElement("p");
+  let blog_body = document.createElement("p");
   blog_body.innerText = blog.body;
     blog_text.appendChild(blog_body);
 };
@@ -103,9 +103,9 @@ comment_submit.addEventListener("click", createComment);
 
 // RENDER COMMENTS
 
-let renderComments = (arr) => {
+let comments_container = document.querySelector(".comments-container");
 
-    let comments_container = document.querySelector(".comments-container");
+let renderComments = (arr) => {
 
 
     arr.forEach((comment) => {
@@ -138,3 +138,5 @@ window.onload = () => {
     renderComments(comments);
     console.log(comments);
   };
+
+export {comments, comments_container}

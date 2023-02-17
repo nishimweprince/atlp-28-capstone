@@ -1,3 +1,5 @@
+import { comments, comments_container } from "./blog-page.js";
+
 // <---- HAMBURGER MENU ---->
 
 let hamburger_menu = document.querySelectorAll(".hamburger-icon");
@@ -87,6 +89,70 @@ contact_submit.addEventListener("click", (e) => {
     }
 });
 
-
 // <---- PAGINATION ---->
 
+let paginationLeft = document.querySelector(".direction-left");
+let paginationRight = document.querySelector(".direction-right");
+let page_container = document.querySelector(".page-numbers-container");
+
+let currentPage = 0;
+
+
+let createPages = (arr) => {
+    let pages = document.createElement("ul");
+
+    arr.forEach((element, index) => {
+        let list = document.createElement("li");
+        let page_number = document.createElement("a");
+        page_number.classList.add("page-number");
+        if (index == 0) {
+            page_number.classList.add("page-current");
+        }
+        page_number.innerText = index + 1;
+        list.appendChild(page_number);
+        pages.appendChild(list);
+
+    });
+    page_container.appendChild(pages);
+    console.log(pages);
+}
+
+let showSlide = (slide) => {
+    Array.from(comments_container.children).forEach((child, index) => {
+        child.style.display = "none";
+      if (index == slide) {
+          child.style.display = "flex";
+      }
+    });
+    Array.from(page_container.children[0].children).forEach((child, index) => {
+        child.children[0].classList.remove("page-current");
+        if (index == slide) {
+            child.children[0].classList.add("page-current");
+        }
+    });
+};
+
+paginationLeft.addEventListener("click", (e) => {
+    e.preventDefault();
+    currentPage--;
+    if (currentPage < 0) {
+        currentPage = comments_container.children.length - 1;
+    }
+
+    showSlide(currentPage);
+
+});
+
+paginationRight.addEventListener("click", (e) => {
+        e.preventDefault();
+        currentPage++;
+        if (currentPage > comments_container.children.length - 1) {
+            currentPage = 0;
+        }
+    
+        showSlide(currentPage);
+});
+
+export {createPages}
+
+document.addEventListener("DOMContentLoaded", createPages(comments));

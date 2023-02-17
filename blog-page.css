@@ -304,6 +304,7 @@ form input:focus {
     flex-direction: column;
     gap: 10px 20px;
     padding: 10px;
+    margin: 0 auto;
 }
 
 .comment-box #comment-heading {
@@ -834,6 +835,7 @@ form input[type="submit"] {
     .comments-carousel {
         display: flex;
         align-items: center;
+        justify-content: center;
     }
 
     .comment-box {
