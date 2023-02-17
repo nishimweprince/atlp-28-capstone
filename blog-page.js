@@ -203,10 +203,7 @@ paginationRight.addEventListener("click", (e) => {
         showSlide(currentPage);
 });
 
-export {createPages}
 
 document.addEventListener("DOMContentLoaded", createPages(comments));
 
 comment_submit.addEventListener("click", createComment);
-
-export {comments, comments_container, comment_submit, paginationLeft, paginationRight}
