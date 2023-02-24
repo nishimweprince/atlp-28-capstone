@@ -1,208 +1,101 @@
+import {createNav, createFooter, createResponsiveNav, formValidations} from "./main.js";
 
-// <--- SMTP CREDENTIALS ---->
-/*
-Username: princeelysee@gmail.com
-Password: 9182787AF9362A31F79FCB4D9FFFE01F3905
-Server: smtp.elasticemail.com
-Port: 2525
-Security token: 6f7acccb-1b5d-46f5-86c3-45c7af504c84
-*/
+// CREATE NAVBAR AND FOOTER
 
-/* SmtpJS.com - v3.0.0 */
-var Email = {
-  send: function (a) {
-    return new Promise(function (n, e) {
-      (a.nocache = Math.floor(1e6 * Math.random() + 1)), (a.Action = "Send");
-      var t = JSON.stringify(a);
-      Email.ajaxPost("https://smtpjs.com/v3/smtpjs.aspx?", t, function (e) {
-        n(e);
-      });
-    });
-  },
-  ajaxPost: function (e, n, t) {
-    var a = Email.createCORSRequest("POST", e);
-    a.setRequestHeader("Content-type", "application/x-www-form-urlencoded"),
-      (a.onload = function () {
-        var e = a.responseText;
-        null != t && t(e);
-      }),
-      a.send(n);
-  },
-  ajax: function (e, n) {
-    var t = Email.createCORSRequest("GET", e);
-    (t.onload = function () {
-      var e = t.responseText;
-      null != n && n(e);
-    }),
-      t.send();
-  },
-  createCORSRequest: function (e, n) {
-    var t = new XMLHttpRequest();
-    return (
-      "withCredentials" in t
-        ? t.open(e, n, !0)
-        : "undefined" != typeof XDomainRequest
-        ? (t = new XDomainRequest()).open(e, n)
-        : (t = null),
-      t
-    );
-  },
-};
+let heroNav = document.querySelector(".hero-nav");
 
-let messages = localStorage.getItem('messages')
-? JSON.parse(localStorage.getItem('messages')) : [];
+heroNav.insertBefore(createNav(), heroNav.firstChild);
+createFooter();
+createResponsiveNav();
+formValidations();
 
-// <---- HAMBURGER MENU ---->
+// UNIVERSAL VARIABLES
+let boxContainer = document.querySelectorAll(".box-container");
+let boxes = document.querySelectorAll(".box");
 
-let hamburger_menu = document.querySelectorAll(".hamburger-icon");
-let responsive_nav = document.querySelector(".responsive-nav");
-let close_nav = document.querySelector(".hide-nav");
+let skillsContainer = document.querySelector(".skills-container");
+let skillBoxes = document.querySelectorAll(".skill-box");
+let dotsContainer = document.querySelectorAll(".carousel-dots");
 
-hamburger_menu[0].addEventListener("click", () => {
+// CAROUSEL BUTTONS
+let carouselLeft = Array.from(document.querySelectorAll(".carousel-left"));
+let carouselRight = Array.from(document.querySelectorAll(".carousel-right"));
 
-    hamburger_menu[0].classList.toggle("is-not-active");
-    hamburger_menu[1].classList.toggle("is-not-active");
-    responsive_nav.classList.toggle("hide-nav");
-    responsive_nav.style.transform = "translateY(0%)";
+let currentSlide = 0;
 
-});
+// CREATE DOTS
+const createDots = (arr) => {
+  let dotsArray = [];
 
-hamburger_menu[1].addEventListener("click", () => {
-
-    hamburger_menu[0].classList.toggle("is-not-active");
-    hamburger_menu[1].classList.toggle("is-not-active");
-    responsive_nav.classList.toggle("hide-nav");
-    close_nav.style.transform = "translateY(-150%)";
-});
-
-// VALIDATION FEEDBACKS
-
-let newsletter_error = document.getElementById("newsletter-error");
-let newsletter_success = document.getElementById("newsletter-success"); 
-
-let contact_name_error = document.getElementById("contact-name-error");
-let contact_email_error = document.getElementById("contact-email-error");
-let contact_message_error = document.getElementById("contact-message-error");
-let contact_form_success = document.getElementById("contact-form-success");
-let contact_form_error = document.getElementById("contact-form-error");
-
-// < ---- NEWSLETTER VALIDATIONS ---->
-
-let newsletter_email = document.getElementById("newsletter-email");
-let newsletter_submit = document.getElementById("newsletter-submit");
-
-newsletter_submit.addEventListener("click", (e) => {
-    e.preventDefault();
-    const emailRegex = /^([a-zA-Z0-9\._]+)@([a-zA-Z0-9])+.([a-z]+)(.[a-z]+)(.[a-z]+)?$/;
-
-    if (emailRegex.test(newsletter_email.value)) {
-        newsletter_success.style.display = "block";
-        newsletter_error.style.display = "none";
-        newsletter_email.value = "";
+  for (let i = 0; i < arr.length; i++) {
+    let dot = document.createElement("span");
+    dot.classList.add("dot");
+    if (i == 0) {
+      dot.classList.add("dot-fill");
     }
-
-    else {
-        newsletter_error.style.display = "block";
-        newsletter_success.style.display = "none";
-    }
-    
-});
-
-// <---- FORM VALIDATIONS ---->
-
-const contact_name = document.getElementById("contact-form-name");
-const contact_email = document.getElementById("contact-form-email");
-const contact_message = document.getElementById("contact-form-message");
-const contact_submit = document.getElementById("contact-form-submit");
-
-contact_submit.addEventListener('click', (e) => {
-
-  const contact_name = document.getElementById("contact-form-name");
-  const contact_email = document.getElementById("contact-form-email");
-  const contact_message = document.getElementById("contact-form-message");
-
-  e.preventDefault();
-
-  let messageObj = {
-    name: contact_name.value,
-    email: contact_email.value,
-    body: contact_message.value,
-    date: date()
+    dotsArray.push(dot);
   }
 
-  messages.push(messageObj);
-  localStorage.setItem('messages', JSON.stringify(messages));
+  return dotsArray;
+};
 
-  console.log(messages);
-})
-contact_submit.addEventListener("click", (e) => {
-    e.preventDefault();
-    const emailRegex = /^([a-zA-Z0-9\._]+)@([a-zA-Z0-9])+.([a-z]+)(.[a-z]+)(.[a-z]+)?$/;
-    const nameRegex = /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/;
-    if(
-        (emailRegex.test(contact_email.value))
-    && (nameRegex.test(contact_name.value))
-    && (nameRegex.test(contact_message.value))
-    )
-    {
-        contact_form_error.style.display = "none";
-        contact_form_success.style.display = "block";
-        contact_name.value = "";
-        contact_email.value = "";
-        contact_message.value = "";
-    }
-    else {
-        contact_form_error.style.display = "block";
-        contact_form_success.style.display = "none";
-        console.log(contact_message.value);
-    }
+// SHOW SKILL
 
-    // <---- SEND EMAIL ---->
+let showSlide = (boxContainer, dotsContainer, slide) => {
+  Array.from(boxContainer.children).forEach((child, index) => {
+      child.style.display = "none";
+      if (index == slide) {
+          child.style.display = "flex";
+      }
+  });
 
+  Array.from(dotsContainer.children).forEach((dot, index) => {
+      dot.classList.remove("dot-fill");
+      if (index == slide) {
+          dot.classList.add("dot-fill");
+      }
+  });
+};
 
-    Email.send({
-      SecureToken: "6f7acccb-1b5d-46f5-86c3-45c7af504c84",
-      To: "princeelysee@gmail.com",
-      From: "princeelysee@gmail.com",
-      Subject: `${contact_name.value} has contacted you from the website form`,
-      Body: `
-      ${contact_name.value} has sent you a message:
-  
-      ${contact_message.value}
-      `,
-    }).then((message) => {
-      alert('We have received your message in our inbox');
-      console.log(message, contact_email.value);
-    }).catch((error) => {
-      console.log(error)
-    })
-    ;
+// CAROUSEL NAVIGATION
+
+carouselLeft.forEach((left, index) => {
+
+    left.addEventListener("click", (e) => {
+        e.preventDefault();
+        const targetCarousel = e.target.closest(".section").getAttribute("data-carousel");
+        const targetBoxContainer = document.querySelector(`[data-carousel="${targetCarousel}"] .carousel-container .box-container`);
+        const targetDotsContainer = document.querySelector(`[data-carousel="${targetCarousel}"] .carousel-dots`);
+        console.log(targetDotsContainer);
+
+        currentSlide--;
+        if (currentSlide < 0) {
+            currentSlide = targetBoxContainer.children.length - 1;
+        }
+        showSlide(targetBoxContainer, targetDotsContainer, currentSlide);
+    });
 
 });
 
-// GET DATE
+carouselRight.forEach((right, index) => {
 
-const date = () => {
-  const now = new Date(Date.now());
-  const months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
-  const day = now.getDate();
-  const monthIndex = now.getMonth();
-  const year = now.getFullYear();
+  right.addEventListener("click", (e) => {
+    e.preventDefault();
 
-  const formattedDate = `${day} ${months[monthIndex]} ${year}`;
+    const targetCarousel = e.target.closest(".section").getAttribute("data-carousel");
+    const targetBoxContainer = document.querySelector(`[data-carousel="${targetCarousel}"] .carousel-container .box-container`);
+    const targetDotsContainer = document.querySelector(`[data-carousel="${targetCarousel}"] .carousel-dots`);
 
-  return formattedDate;
+    currentSlide++;
+    if (currentSlide > targetBoxContainer.children.length - 1) {
+      currentSlide = 0;
+    }
+    showSlide(targetBoxContainer, targetDotsContainer, currentSlide);
+  });
+});
+
+window.onload = () => {
+  Array.from(boxContainer).forEach((box, index) => {
+    dotsContainer[index].append(...createDots(box.children));
+  });
 };

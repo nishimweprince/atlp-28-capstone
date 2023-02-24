@@ -1,3 +1,11 @@
+import {createNav, createFooter, createResponsiveNav, formValidations} from "./main.js";
+
+// CREATE NAVBAR AND FOOTER
+document.body.insertBefore(createNav(), document.body.firstChild);
+createFooter();
+createResponsiveNav();
+formValidations();
+
 let posts = localStorage.getItem("posts")
   ? JSON.parse(localStorage.getItem("posts"))
   : [];
