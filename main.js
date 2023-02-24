@@ -9,6 +9,7 @@ Security token: 6f7acccb-1b5d-46f5-86c3-45c7af504c84
 
 let createNav = () => {
     let navContainer = document.createElement("div");
+    navContainer.classList.add("nav-container");
   
     let navbar = document.createElement("nav");
     navbar.classList.add("navbar");
@@ -92,7 +93,6 @@ let createNav = () => {
     navContainer.appendChild(navbar);
     navContainer.appendChild(responsiveNav);
     return navContainer;
-
 }
 
 let createFooter = () => {

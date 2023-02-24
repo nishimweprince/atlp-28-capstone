@@ -1,18 +1,19 @@
-  /* HERO NAV  */
+/* HERO NAV */
 
-  .hero-nav {
-    height: 100vh;
-    display: grid;
-    grid-template-rows: 15% 85%;
+.hero-nav {
+    display: flex;
+    flex-direction: column;
+    height: auto;
 }
+
 
   /* HERO TEXT  */
 
   .hero-text {
-
     display: flex;
     flex-direction: column;
-    gap: 40px;
+    gap: 2.5rem;
+    height: 100%;
     justify-content: center;
 }
 
