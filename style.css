@@ -7,18 +7,17 @@
 
 FONT SIZES:
 
+h1: 35px -- 2.1875rem || 30px -- 1.875rem || 25px -- 1.5625rem || 20px -- 1.25rem || 18px -- 1.125rem || 16px -- 1rem
+h2: 30px -- 1.875rem || 25px -- 1.5625rem || 20px -- 1.25rem
+h3: 25px -- 1.5625rem || 20px -- 1.25rem
+h4: 20px -- 1.25rem || 18px -- 1.125rem
+
+p: 16px -- 1rem
+
+p.large: 18px -- 1.125rem
 
 
-*/
-
-  /* <!-- HERO SECTION --> */
-
-  .hero {
-
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    padding: 0 5rem;
-}  
+*/ 
 
 * {
     margin: 0;
@@ -49,7 +48,7 @@ body {
   }
 
   .primary-button {
-      background-color: #58287F;
+      background-color: var(--purple);
       padding: 0.625rem 1.25rem; /* 0.625rem 1.25rem */
       color: white;
       border: none;
@@ -68,26 +67,30 @@ body {
       box-shadow: 0 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
   }
 
-  .portfolio-primary {
-      background-color: #58287F;
-  }
-
-  .portfolio-secondary {
-      background-color: black;
-  }
-
-  .portfolio-cta a {
-      text-decoration: none;
-      color: white;
-      padding: 0.625rem 1.25rem;
-      border-radius: 0.3125rem;
-      font-size: 1rem;
+  h1 {
+      font-size: 2.1875rem;
+      font-weight: 500;
       text-transform: uppercase;
   }
 
-  .portfolio-cta a:hover {
-      transform: scale(1.02);
-      transition: all 0.3s ease-in-out;
+  h2 {
+      font-size: 1.875rem;
+  }
+
+  h3 {
+      font-size: 1.5625rem;
+  }
+
+  h4 {
+      font-size: 1.25rem;
+  }
+
+  p.large {
+      font-size: 1.125rem;
+  }
+
+  p {
+    font-size: 1rem;
   }
 
 
@@ -127,7 +130,7 @@ body {
   .nav-links ul li a:hover {
       transform: scale(1.05);
       transition: all 0.3s ease-in-out;
-      color: #58287F;
+      color: var(--purple);
   }
 
   .logo img {
@@ -179,13 +182,13 @@ body {
 
   .form-submit input[type="submit"] {
     padding: 8px 0.625rem;
-    border: 0.0625rem solid #58287F;
+    border: 0.0625rem solid var(--purple);
     border-radius: 0.3125rem;
     outline: none;
   }
 
   .newsletter h1 {
-        color: #58287F;
+        color: var(--purple);
         text-transform: uppercase;
         font-size: 1.125rem;
         font-weight: 500;
@@ -199,7 +202,7 @@ body {
   }
 
   .quick-links h1 {
-      color: #58287F;
+      color: var(--purple);
       text-transform: uppercase;
       font-size: 1.125rem;
       font-weight: 500;
@@ -222,7 +225,7 @@ body {
 
   .quick-links #admin-link {
       padding: 0.3125rem 0.625rem;
-      background-color: #58287F;
+      background-color: var(--purple);
       color: white;
       border-radius: 8px;
       font-size: 1rem;
@@ -240,7 +243,7 @@ body {
   }
 
   .form-container h1 {
-      color: #58287F;
+      color: var(--purple);
       text-transform: uppercase;
       font-size: 1.125rem;
       font-weight: 500;
@@ -257,7 +260,7 @@ body {
   form input {
       padding: 0.625rem;
       border-radius: 0.3125rem;
-      border: 0.0625rem solid #58287F;
+      border: 0.0625rem solid var(--purple);
   }
 
   form input:focus {
@@ -267,13 +270,13 @@ body {
   form textarea {
       padding: 0.625rem;
       border-radius: 0.3125rem;
-      border: 0.0625rem solid #58287F;
+      border: 0.0625rem solid var(--purple);
       resize: none;
   }
 
   form textarea:focus {
       outline: none;
-      border: 0.0625rem solid #58287F;
+      border: 0.0625rem solid var(--purple);
   }
 
   form input[type="submit"] {
@@ -310,7 +313,7 @@ body {
 
   .copyright-heading h1 span {
       font-size: 35px;
-      color: #58287F;
+      color: var(--purple);
       font-weight: 700;
   }
 
@@ -320,7 +323,7 @@ body {
   }
 
   .copyright-heading p span {
-      color: #58287F;
+      color: var(--purple);
   }
 
   .copyright-social-icons ul {
@@ -373,7 +376,7 @@ body {
       justify-content: center;
       align-items: center;
       text-decoration: none;
-      color: #58287F;
+      color: var(--purple);
   }
 
   .hamburger a svg {
@@ -382,48 +385,6 @@ body {
 
   .hamburger .is-not-active {
       display: none;
-  }
-
-  /* SKILLS SECTION  */
-
-  .skills-carousel {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-  }
-
-  .carousel-direction a {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-decoration: none;
-      color: white;
-      padding: 0.625rem;
-      border-radius: 50%;
-      background-color: #58287F;
-  }
-
-  .carousel-direction a svg {
-      height: 1.25rem;
-  }
-
-  .carousel-dots {
-      /* border: 0.125rem solid red; */
-      display: flex;
-      justify-content: center;
-      gap: 0.625rem;
-  }
-
-  .dot {
-      height: 12px;
-      width: 12px;
-      border-radius: 50%;
-      background-color: white;
-      border: 0.0625rem solid #58287F;
-  }
-
-  .dot-fill {
-      background-color: #58287F;
   }
 
   .responsive {
@@ -502,7 +463,7 @@ body {
         margin: 0 auto;
         display: flex;
         flex-direction: column;
-        padding: 0.625rem 0 30px;
+        padding: 0.625rem 0 2rem;
         gap: 0.625rem;
         background-color: white;
         transition: 0.8s all ease-in-out;
@@ -734,7 +695,7 @@ body {
         padding: 0.625rem 30px;
         width: 80%;
         background-color: white;
-        border: 0.0625rem solid #58287F;
+        border: 0.0625rem solid var(--purple);
 
         /* border: 0.125rem solid red; */
     }
@@ -1095,7 +1056,7 @@ body {
           padding: 0.625rem;
 
           background-color: white;
-          border: 0.0625rem solid #58287F;
+          border: 0.0625rem solid var(--purple);
 
           /* border: 0.125rem solid red; */
       }
@@ -1240,7 +1201,7 @@ body {
       }
 
       .copyright-heading h1 span {
-          color: #58287F;
+          color: var(--purple);
           font-size: 28px;
       }
 
