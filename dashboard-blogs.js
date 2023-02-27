@@ -194,6 +194,56 @@ let deletePost = (id) => {
     
 }
 
+// <--- EDIT POST ---->
+
+let edit_form = document.querySelector(".edit-form-container");
+let edit_modal_container = document.querySelector(".edit-modal-container");
+
 let editPost = (id) => {
-    console.log(posts[id]);
+
+    edit_modal_container.style.display = "flex";
+    
+    edit_form.innerHTML = `
+    
+    <span class="input-container">
+                    <label for="blog-title">Blog Title</label>
+                    <input type="text" value="${posts[id].title}" name="blog-title" id="blog-title">
+                </span>
+    
+                <span class="input-container">
+                    <label for="blog-content">Author name</label>
+                    <input type="text" name="author-name" value="${posts[id].author_name}" id="author-name">
+                </span>
+    
+                <span class="input-container">
+                    <label for="blog-body">Blog Body</label>
+                    <textarea name="blog-body" id="blog-body" cols="30" rows="10">${posts[id].body}</textarea>
+                </span>
+    
+                <span class="edit-blog-cta">
+                    <input onclick="submitEdit(${id})" type="submit" class="btn-primary" value="Update blog" id="blog-submit">
+                </span>
+
+    `
+
+    console.log(posts[id].title, posts[id].body, posts[id].author_name);
+
+}
+
+let submitEdit = (id) => {
+    let blog_title = document.querySelector("#blog-title").value;
+    let blog_body = document.querySelector("#blog-body").value;
+    let author_name = document.querySelector("#author-name").value;
+
+    posts[id].title = blog_title;
+    posts[id].body = blog_body;
+    posts[id].author_name = author_name;
+
+    localStorage.setItem('posts', JSON.stringify(posts));
+
+    setTimeout(() => {
+        edit_modal_container.style.display = "none";
+        window.location.reload();
+    }, 1000);
+
 }
