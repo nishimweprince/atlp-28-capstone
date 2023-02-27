@@ -84,11 +84,11 @@ let renderBlogs = (arr) => {
 
                 <div class="blog-cta">
 
-                    <a href="#" id="blog-edit">
+                    <a onclick="editPost(${index})" href="#" id="blog-edit">
                         <img src="./images/edit-icon.png" alt="" id="edit-icon">
                     </a>
 
-                    <a href="#" id="blog-delete">
+                    <a onclick="deletePost(${index})" href="#" id="blog-delete">
                         <img src="./images/delete-icon.png" alt="" id="delete-icon">
                     </a>
 
@@ -178,15 +178,22 @@ window.onload = () => {
 
 // <---- DELETE POST ---->
 
-let deletePost = (e) => {
+let deletePost = (id) => {
 
-    e.preventDefault();
-    let deleteBtn = document.querySelectorAll("#blog-delete");
+    let arr = JSON.parse(localStorage.getItem('posts'));
 
-    deleteBtn.addEventListener("click", (e) => {
-        e.preventDefault();
+    console.log(posts[id]);
 
-        let post_id = e.target.parentElement.parentElement.parentElement.children[1].innerText;
-    });
+    posts.splice(id, 1);
+
+    localStorage.setItem('posts', JSON.stringify(posts));
+
+    setTimeout(() => {
+        window.location.reload();
+    }, 1000);
     
+}
+
+let editPost = (id) => {
+    console.log(posts[id]);
 }
