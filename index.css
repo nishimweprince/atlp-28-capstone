@@ -25,6 +25,7 @@
     border-radius: 0.3125rem;
     font-size: 1rem;
     text-transform: uppercase;
+    text-align: center;
 }
 
 .portfolio-cta a:hover {
@@ -170,7 +171,7 @@ body {
 
 .about-text {
     display: grid;
-    grid-template-columns: 10% 80%;
+    grid-template-columns: 10% 85%;
     gap: 5%;
     align-items: center;
     justify-content: center;
@@ -258,9 +259,9 @@ body {
     display: grid;
     margin: 0 auto;
     grid-template-columns: repeat(2, 1fr);
-    justify-content: space-between;
+    justify-content: space-evenly;
     gap: 1.25rem;
-    width: 90%;
+    width: 80%;
 
     /* border: 2px solid red; */
 }
@@ -270,16 +271,18 @@ body {
     grid-template-rows: 15% 60% 15%;
     gap: 5%;
     height: fit-content;
-    padding: 1.25rem;
+    padding: 2rem 1.25rem;
     border: 1px solid var(--purple);
     border-radius: 5px;
     align-items: center;
+    max-width: 90%;
     place-items: center;
 }
 
 .portfolio-box h3 {
     text-transform: uppercase;
     font-weight: 500;
+    text-align: center;
 }
 
 .portfolio-box p {
@@ -396,20 +399,19 @@ body {
     align-items: center;
     justify-content: center;
     gap: 1rem;
-    padding: 0 0 1.25rem 0;
+    padding: 0.3125rem 0.625rem 1rem;
     text-align: center;
-    border-radius: 0.625rem;
     border: 1px solid var(--purple);
     max-width: 90%;
     margin: 0 auto;
-    /* background-color: rgba(196, 196, 212, 0.25); */
+    /* background-color: rgba(211, 211, 219, 0.25); */
 }
 
 .blog-box img {
-    height: 200px;
+    height: 150px;
     width: 100%;
     object-fit: cover;
-    border-radius: 0.625rem;
+    border-radius: 0.3125rem;
 }
 
 .blog-text h4 {
@@ -427,7 +429,7 @@ body {
 
 .blog-cta a {
     padding: 0.3125rem 1rem;
-    background-color: var(--purple);
+    background-color: black;
     color: white;
     text-decoration: none;
     border-radius: 0.3125rem;
@@ -484,4 +486,35 @@ body {
 
 .dot-fill {
     background-color: var(--purple);
+}
+
+/* <---- MEDIA QUERIES -----> */
+
+/* <--- 1000 PX ---> */
+
+@media screen and (max-width: 1000px) {
+
+/* ABOUT SECTION  */
+
+.about-text {
+    grid-template-columns: 1fr;
+}
+
+.about-text hr {
+    width: 50%;
+    margin: -50px auto 0;
+}
+
+/* SKILLS SECTION  */
+
+.skills-container {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+/* PORTFOLIO  */
+
+.portfolio h3 {
+    font-weight: 600;
+}
+
 }
