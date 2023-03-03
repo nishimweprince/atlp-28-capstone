@@ -108,7 +108,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    justify-content: flex-end;
+    justify-content: center;
 }
 
 .hero-line {
@@ -116,6 +116,7 @@ body {
     height: 50%;
     width: 0.125rem;
     padding: 0.625rem;
+    display: none;
 }
 
 .hero-line:hover {
@@ -137,6 +138,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+    transform: translate(0, -50%);
 }
 
 .hero-image ul li {
@@ -276,7 +278,7 @@ body {
     border-radius: 5px;
     align-items: center;
     max-width: 90%;
-    place-items: center;
+    margin: 0 auto;
 }
 
 .portfolio-box h3 {
@@ -289,6 +291,7 @@ body {
     word-wrap: break-word;
     max-width: 90%;
     text-align: center;
+    margin: 0;
 }
 
 .portfolio-cta {
@@ -516,5 +519,87 @@ body {
 .portfolio h3 {
     font-weight: 600;
 }
+
+}
+
+/* <!-- 950 PX --> */
+
+@media screen and (max-width: 950px) {
+
+    /* HERO  */
+
+    .hero {
+        padding: 0 3rem;
+    }
+
+}
+
+/* <!-- 800 PX --> */
+
+@media screen and (max-width: 800px) {
+
+    /* HERO  */
+
+    .hero {
+        padding: 0 2rem;
+    }
+
+    /* ABOUT  */
+
+    .about-text {
+        text-align: center;
+    }
+
+    /* PORTFOLIO  */
+
+    .portfolio-box {
+        padding: 2rem 1rem;
+    }
+
+    .portfolio-cta {
+        flex-direction: column;
+    }
+
+}
+
+/* <--- 700 PX ---> */
+
+@media screen and (max-width: 700px) {
+
+    /* HERO NAV  */
+
+    .hero-nav {
+        height: 120vh;
+    }
+
+    /* HERO  */
+
+    .hero {
+        padding: 0 2rem;
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(2, 1fr);
+        gap: 30px;
+    }
+
+    .hero-text {
+        order: 2;
+        align-items: center;
+        text-align: center;
+    }
+
+    .hero-image {
+        order: 1;
+        width: 80%;
+        margin: 0 auto;
+        height: 100%;
+    }
+
+    .hero-image ul {
+        gap: 10px;
+    }
+
+    .hero-text-heading h1 {
+        text-align: center;
+    }
 
 }
