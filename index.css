@@ -98,6 +98,11 @@ body {
     height: auto;
 }
 
+.primary-button:hover {
+    transform: scale(1.02);
+    transition: all 0.3s ease-in-out;
+}
+
 /* HERO IMAGE  */
 
 .hero-image {
