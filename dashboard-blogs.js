@@ -36,6 +36,22 @@ hamburger_menu[1].addEventListener("click", () => {
 
 // <---- DASHBOARD INBOX ---->
 
+// API URL
+
+const api_url = "http://localhost:4000/api/blogs";
+
+// FETCH BLOGS
+
+fetch(`${api_url}`, {
+    method: "GET"
+})
+.then((response) => response.json())
+.then((data) => {
+    const result = data.data;
+    console.log(result)
+    renderBlogs(result);
+})
+
 let posts = localStorage.getItem("posts") 
 ? JSON.parse(localStorage.getItem("posts")) : [];
 
@@ -64,7 +80,7 @@ let renderBlogs = (arr) => {
                 </div>
 
                 <p id="blog-id">
-                    #: 0012
+                    #: 00${index + 1}
                 </p>
 
                 <h1>
@@ -172,9 +188,6 @@ paginationRight.addEventListener("click", (e) => {
 
 
 document.addEventListener("DOMContentLoaded", createPages(posts));
-window.onload = () => {
-    renderBlogs(posts);
-}
 
 // <---- DELETE POST ---->
 

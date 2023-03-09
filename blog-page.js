@@ -4,6 +4,25 @@ let posts = localStorage.getItem("posts")
 
 console.log(posts);
 
+// API URL
+const api_url = "http://localhost:4000/api/blogs";
+
+// CATCH BLOG ID FROM LOCAL STORAGE
+let blogId = localStorage.getItem("blogId");
+console.log(blogId);
+
+// FETCH SINGLE BLOG
+
+fetch(`${api_url}/${blogId}`, {
+    method: "GET",
+})
+.then((response) => response.json())
+.then((data) => {
+    const result = data.data;
+    console.log(result)
+    renderSingleBlog(result);
+});
+
 // SINGLE BLOG PAGE
 
 let paginationLeft = document.querySelector(".direction-left");
@@ -15,13 +34,16 @@ let blog_text = document.querySelector(".blog-text-container");
 
 let blog_image = document.querySelector(".blog-image");
 
-let renderSingleBlog = (arr) => {
-  let blog = arr[3];
+let renderSingleBlog = (blog) => {
+
+    // BLOG AUTHOR
+
+    let blog_author = document.createElement("p");
 
   // BLOG HEADING
   let blog_heading = document.createElement("h1");
   let blog_date = document.createElement("p");
-  blog_date.innerText = "12 May 2021";
+  blog_date.innerText = blog.createdAt.split("T")[0].split("-").reverse().join("/");
   blog_heading.innerText = blog.title;
 
   blog_title.appendChild(blog_heading);
@@ -135,7 +157,6 @@ let renderComments = (arr) => {
 }
 
 window.onload = () => {
-    renderSingleBlog(posts);
     renderComments(comments);
     console.log(comments);
 };

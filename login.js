@@ -40,15 +40,22 @@ login_submit.addEventListener("click", (e) => {
         .then((data) => {
             document.cookie = `token=${data.token}; Path=/;`;
             console.log(data)
+
+            if (data.token) {
+                setTimeout(() => {
+                    window.location.href = "./dashboard-home.html";
+                }, 3000);
+            }
+
+        })
+        .catch((err) => {
+            console.log(err);
         });
 
         login_email.value = "";
         login_password.value = "";
 
         sessionStorage.setItem("isLoggedIn", true);
-        setTimeout(() => {
-            window.location.href = "./dashboard-home.html";
-        }, 1500);
     }
     else {
         login_email_error.style.display = "none";
