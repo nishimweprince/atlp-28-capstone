@@ -59,8 +59,8 @@ let createNav = () => {
                   </ul>
               </div>
   
-              <div class="primary-button navbar-cta">
-                  <a href="#portfolio">Portfolio</a>
+              <div class="navbar-cta">
+                  <a class="primary-button" href="#portfolio">Portfolio</a>
               </div>
   
               <div class="hamburger responsive">
@@ -85,7 +85,7 @@ let createNav = () => {
               </div>
   
               <div class="navbar-cta">
-                  <a class="primary-button navbar-cta" href="#portfolio">Portfolio</a>
+                  <a class="primary-button" href="#portfolio">Portfolio</a>
               </div>
   
       `;
