@@ -8,18 +8,18 @@ Security token: 6f7acccb-1b5d-46f5-86c3-45c7af504c84
 */
 
 let createNav = () => {
-    let navContainer = document.createElement("div");
-    navContainer.classList.add("nav-container");
-  
-    let navbar = document.createElement("nav");
-    navbar.classList.add("navbar");
-  
-    var hamburgerClose = document.createElement("a");
-      hamburgerClose.classList.add("hamburger-icon");
-      hamburgerClose.classList.add("is-not-active");
-      hamburgerClose.setAttribute("id", "hamburger-close");
-  
-      hamburgerClose.innerHTML = `
+  let navContainer = document.createElement("div");
+  navContainer.classList.add("nav-container");
+
+  let navbar = document.createElement("nav");
+  navbar.classList.add("navbar");
+
+  var hamburgerClose = document.createElement("a");
+  hamburgerClose.classList.add("hamburger-icon");
+  hamburgerClose.classList.add("is-not-active");
+  hamburgerClose.setAttribute("id", "hamburger-close");
+
+  hamburgerClose.innerHTML = `
       
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                           stroke="currentColor" class="w-6 h-6">
@@ -28,12 +28,12 @@ let createNav = () => {
                       </svg>
   
       `;
-  
-      var hamburgerOpen = document.createElement("a");
-      hamburgerOpen.classList.add("hamburger-icon");
-      hamburgerOpen.setAttribute("id", "hamburger-open");
-  
-      hamburgerOpen.innerHTML = `
+
+  var hamburgerOpen = document.createElement("a");
+  hamburgerOpen.classList.add("hamburger-icon");
+  hamburgerOpen.setAttribute("id", "hamburger-open");
+
+  hamburgerOpen.innerHTML = `
       
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                           stroke="currentColor" class="w-6 h-6">
@@ -42,8 +42,8 @@ let createNav = () => {
         </svg>
   
       `;
-  
-    navbar.innerHTML = `
+
+  navbar.innerHTML = `
       
       <div class="logo">
                   <a href="./index.html">
@@ -69,12 +69,12 @@ let createNav = () => {
               </div>
   
       `;
-  
-    let responsiveNav = document.createElement("div");
-    responsiveNav.classList.add("responsive-nav");
-    responsiveNav.classList.add("hide-nav");
-  
-    responsiveNav.innerHTML = `
+
+  let responsiveNav = document.createElement("div");
+  responsiveNav.classList.add("responsive-nav");
+  responsiveNav.classList.add("hide-nav");
+
+  responsiveNav.innerHTML = `
       
       <div class="nav-links">
                   <ul>
@@ -89,11 +89,11 @@ let createNav = () => {
               </div>
   
       `;
-  
-    navContainer.appendChild(navbar);
-    navContainer.appendChild(responsiveNav);
-    return navContainer;
-}
+
+  navContainer.appendChild(navbar);
+  navContainer.appendChild(responsiveNav);
+  return navContainer;
+};
 
 let createFooter = () => {
   let footer = document.createElement("footer");
@@ -255,8 +255,8 @@ let createFooter = () => {
 };
 
 let formValidations = () => {
-    /* SmtpJS.com - v3.0.0 */
-var Email = {
+  /* SmtpJS.com - v3.0.0 */
+  var Email = {
     send: function (a) {
       return new Promise(function (n, e) {
         (a.nocache = Math.floor(1e6 * Math.random() + 1)), (a.Action = "Send");
@@ -295,95 +295,80 @@ var Email = {
       );
     },
   };
-  
-  let messages = localStorage.getItem('messages')
-  ? JSON.parse(localStorage.getItem('messages')) : [];
-  
+
+  let messages = localStorage.getItem("messages")
+    ? JSON.parse(localStorage.getItem("messages"))
+    : [];
+
   // VALIDATION FEEDBACKS
-  
+
   let newsletter_error = document.getElementById("newsletter-error");
-  let newsletter_success = document.getElementById("newsletter-success"); 
-  
+  let newsletter_success = document.getElementById("newsletter-success");
+
   let contact_name_error = document.getElementById("contact-name-error");
   let contact_email_error = document.getElementById("contact-email-error");
   let contact_message_error = document.getElementById("contact-message-error");
   let contact_form_success = document.getElementById("contact-form-success");
   let contact_form_error = document.getElementById("contact-form-error");
-  
+
   // < ---- NEWSLETTER VALIDATIONS ---->
-  
+
   let newsletter_email = document.getElementById("newsletter-email");
   let newsletter_submit = document.getElementById("newsletter-submit");
-  
+
   newsletter_submit.addEventListener("click", (e) => {
-      e.preventDefault();
-      const emailRegex = /^([a-zA-Z0-9\._]+)@([a-zA-Z0-9])+.([a-z]+)(.[a-z]+)(.[a-z]+)?$/;
-  
-      if (emailRegex.test(newsletter_email.value)) {
-          newsletter_success.style.display = "block";
-          newsletter_error.style.display = "none";
-          newsletter_email.value = "";
-      }
-  
-      else {
-          newsletter_error.style.display = "block";
-          newsletter_success.style.display = "none";
-      }
-      
+    e.preventDefault();
+    const emailRegex =
+      /^([a-zA-Z0-9\._]+)@([a-zA-Z0-9])+.([a-z]+)(.[a-z]+)(.[a-z]+)?$/;
+
+    if (emailRegex.test(newsletter_email.value)) {
+      newsletter_success.style.display = "block";
+      newsletter_error.style.display = "none";
+      newsletter_email.value = "";
+    } else {
+      newsletter_error.style.display = "block";
+      newsletter_success.style.display = "none";
+    }
   });
-  
+
   // <---- FORM VALIDATIONS ---->
-  
-  const contact_name = document.getElementById("contact-form-name");
-  const contact_email = document.getElementById("contact-form-email");
-  const contact_message = document.getElementById("contact-form-message");
+
   const contact_submit = document.getElementById("contact-form-submit");
-  
-  contact_submit.addEventListener('click', (e) => {
-  
+
+  contact_submit.addEventListener("click", (e) => {
+    e.preventDefault();
+
     const contact_name = document.getElementById("contact-form-name");
     const contact_email = document.getElementById("contact-form-email");
     const contact_message = document.getElementById("contact-form-message");
-  
-    e.preventDefault();
-  
-    let messageObj = {
-      name: contact_name.value,
-      email: contact_email.value,
-      body: contact_message.value,
-      date: date()
-    }
-  
-    messages.push(messageObj);
-    localStorage.setItem('messages', JSON.stringify(messages));
-  
-    console.log(messages);
-  })
-  contact_submit.addEventListener("click", (e) => {
-      e.preventDefault();
-      const emailRegex = /^([a-zA-Z0-9\._]+)@([a-zA-Z0-9])+.([a-z]+)(.[a-z]+)(.[a-z]+)?$/;
-      const nameRegex = /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/;
-      if(
-          (emailRegex.test(contact_email.value))
-      && (nameRegex.test(contact_name.value))
-      && (nameRegex.test(contact_message.value))
-      )
-      {
-          contact_form_error.style.display = "none";
-          contact_form_success.style.display = "block";
-          contact_name.value = "";
-          contact_email.value = "";
-          contact_message.value = "";
-      }
-      else {
-          contact_form_error.style.display = "block";
-          contact_form_success.style.display = "none";
-          console.log(contact_message.value);
-      }
-  
+
+    const emailRegex =
+      /^([a-zA-Z0-9\._]+)@([a-zA-Z0-9])+.([a-z]+)(.[a-z]+)(.[a-z]+)?$/;
+    const nameRegex = /^\S.*\S$/;
+    console.log(
+      emailRegex.test(contact_email.value),
+      nameRegex.test(contact_name.value)
+    );
+    if (
+      emailRegex.test(contact_email.value) &&
+      nameRegex.test(contact_name.value) &&
+      nameRegex.test(contact_message.value)
+    ) {
+      let messageObj = {
+        name: contact_name.value,
+        email: contact_email.value,
+        body: contact_message.value,
+        date: date(),
+      };
+
+      contact_form_error.style.display = "none";
+      contact_form_success.style.display = "block";
+      contact_name.value = "";
+      contact_email.value = "";
+      contact_message.value = "";
+
       // <---- SEND EMAIL ---->
-  
-  
+
       Email.send({
         SecureToken: "6f7acccb-1b5d-46f5-86c3-45c7af504c84",
         To: "princeelysee@gmail.com",
@@ -394,18 +379,26 @@ var Email = {
     
         ${contact_message.value}
         `,
-      }).then((message) => {
-        alert('We have received your message in our inbox');
-        console.log(message, contact_email.value);
-      }).catch((error) => {
-        console.log(error)
       })
-      ;
-  
+        .then((message) => {
+          alert("We have received your message in our inbox");
+          console.log(message, contact_email.value);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+
+      messages.push(messageObj);
+      localStorage.setItem("messages", JSON.stringify(messages));
+    } else {
+      contact_form_error.style.display = "block";
+      contact_form_success.style.display = "none";
+      console.log(contact_message.value);
+    }
   });
-  
+
   // GET DATE
-  
+
   const date = () => {
     const now = new Date(Date.now());
     const months = [
@@ -425,34 +418,32 @@ var Email = {
     const day = now.getDate();
     const monthIndex = now.getMonth();
     const year = now.getFullYear();
-  
+
     const formattedDate = `${day} ${months[monthIndex]} ${year}`;
-  
+
     return formattedDate;
   };
-}
+};
 
 let createResponsiveNav = () => {
-    
-    let hamburgerOpen = document.getElementById("hamburger-open");
-    let hamburgerClose = document.getElementById("hamburger-close");
-    let responsiveNav = document.querySelector(".responsive-nav");
-    hamburgerOpen.addEventListener("click", (e) => {
-        e.preventDefault();
+  let hamburgerOpen = document.getElementById("hamburger-open");
+  let hamburgerClose = document.getElementById("hamburger-close");
+  let responsiveNav = document.querySelector(".responsive-nav");
+  hamburgerOpen.addEventListener("click", (e) => {
+    e.preventDefault();
 
-        hamburgerOpen.classList.toggle("is-not-active");
-        hamburgerClose.classList.toggle("is-not-active");
-        responsiveNav.classList.toggle("hide-nav");
-    });
+    hamburgerOpen.classList.toggle("is-not-active");
+    hamburgerClose.classList.toggle("is-not-active");
+    responsiveNav.classList.toggle("hide-nav");
+  });
 
-    hamburgerClose.addEventListener("click", (e) => {
-        e.preventDefault();
+  hamburgerClose.addEventListener("click", (e) => {
+    e.preventDefault();
 
-        hamburgerOpen.classList.toggle("is-not-active");
-        hamburgerClose.classList.toggle("is-not-active");
-        responsiveNav.classList.toggle("hide-nav");
-    });
+    hamburgerOpen.classList.toggle("is-not-active");
+    hamburgerClose.classList.toggle("is-not-active");
+    responsiveNav.classList.toggle("hide-nav");
+  });
+};
 
-}
-
-export {createNav, createFooter, createResponsiveNav, formValidations}
+export { createNav, createFooter, createResponsiveNav, formValidations };

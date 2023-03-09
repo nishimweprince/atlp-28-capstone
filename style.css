@@ -146,7 +146,11 @@ body {
       text-decoration: none;
   }
 
-  /* <-- FOOTER --> */
+  /* 
+  
+  <---- FOOTER ----> 
+  
+  */
 
   .footer {
       display: flex;
@@ -168,7 +172,7 @@ body {
   .footer-up span {
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 1.875rem;
   }
 
   .newsletter {
@@ -181,7 +185,7 @@ body {
 
   .newsletter form {
     padding: 0.625rem 0;
-    width: 60%;
+    width: 80%;
   }
 
   .form-submit input[type="submit"] {
@@ -243,7 +247,7 @@ body {
 
   .form-container {
       /* text-align: center; */
-      padding: 0.625rem 50px;
+      padding: 0.625rem;
   }
 
   .form-container h1 {
@@ -265,6 +269,7 @@ body {
       padding: 0.625rem;
       border-radius: 0.3125rem;
       border: 0.0625rem solid var(--purple);
+      width: 80%;
   }
 
   form input:focus {
@@ -276,6 +281,7 @@ body {
       border-radius: 0.3125rem;
       border: 0.0625rem solid var(--purple);
       resize: none;
+      width: 80%;
   }
 
   form textarea:focus {
@@ -334,7 +340,7 @@ body {
   .copyright-social-icons ul {
       display: flex;
       justify-content: center;
-      gap: 30px;
+      gap: 1.875rem;
       padding: 0;
       list-style: none;
   }
@@ -407,6 +413,18 @@ body {
 
   /* <----- MEDIA QUERIES ------->  */
 
+    /* <----  1200 PX ----> */
+
+    @media screen and (max-width: 1200px) {
+
+        /* <--- FOOTER ---> */
+
+        form input, form textarea {
+            width: 90%;
+        }
+
+    }
+
   /* <----  1000 PX ----> */
 
   @media screen and (max-width: 1000px) {
@@ -423,6 +441,36 @@ body {
 
     h3 {
         font-size: 1.25rem;
+    }
+
+    /* <--- FOOTER --->*/
+
+    .footer {
+        padding: 1.25rem 4rem;
+    }
+
+    form input, form textarea {
+        width: 100%;
+    }
+
+  }
+
+  /* <--- 900 PX ----> */ 
+
+  @media screen and (max-width: 900px) {
+
+    .footer {
+        padding: 1.25rem 5rem;
+    }
+
+    .footer-up {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+        width: 70%;
+    }
+
+    form {
+        padding: 1.25rem 0;
     }
 
   }
@@ -479,9 +527,27 @@ body {
     }
   }
 
+  /* <--- 800 PX ----> */
+
+  @media screen and (max-width: 800px) {
+
+    /* <--- FOOTER ---> */
+
+    .footer {
+        padding: 1.25rem 3rem;
+    }
+
+  }
+
   /* <--- 650 PX ----> */
 
   @media screen and (max-width: 650px) {
+
+    /* NAVBAR */
+
+    .navbar {
+        padding: 1.25rem 4rem;
+    }
 
     /* NAVBAR LOGO */
 
@@ -489,7 +555,35 @@ body {
         max-width: 7.5rem;
     }
 
+    /* <!-- FOOTER --> */
+
+    .footer-up {
+        width: 80%;
+    }
+
+    /* NEWSLETTER */
+
+    .newsletter form {
+        width: 100%;
+    }
+
   }
+
+  /* <--- 550 PX ----> */ 
+
+    @media screen and (max-width: 550px) {
+
+        /* <!-- FOOTER --> */
+
+        .footer {
+            padding: 1.25rem 2rem;
+        }
+
+        .footer-up {
+            width: 90%;
+        }
+
+    }
 
     /* <--- 500 PX ----> */
 
@@ -535,6 +629,17 @@ body {
 
         .logo img {
             max-width: 4rem;
+        }
+
+        /* <!-- FOOTER --> */
+
+        .footer {
+            padding: 1.25rem 1rem;
+            width: 90%;
+        }
+
+        .footer-up {
+            width: 100%;
         }
 
     }
