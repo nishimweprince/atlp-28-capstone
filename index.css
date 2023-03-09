@@ -65,6 +65,7 @@ body {
     height: 100%;
     justify-content: center;
     width: 90%;
+    margin: 0 auto;
 }
 
 .hero-text-heading {
@@ -86,7 +87,7 @@ body {
 
 .hero-text-heading p {
     word-wrap: break-word;
-    max-width: 250px;
+    max-width: 15.6rem;
 }
 
 #hero-small-skills {
@@ -571,10 +572,14 @@ body {
 
 @media screen and (max-width: 700px) {
 
+    html {
+        font-size: 90%;
+    }
+
     /* HERO NAV  */
 
     .hero-nav {
-        height: 120vh;
+        height: auto;
     }
 
     /* HERO  */
@@ -603,8 +608,86 @@ body {
         gap: 10px;
     }
 
+    .hero-image ul li {
+        height: 6vh;
+        width: 6vw;
+    }
+
     .hero-text-heading h1 {
         text-align: center;
+    }
+
+}
+
+/* <--- 650 PX ---> */
+
+@media screen and (max-width: 650px) {
+
+    /* SKILLS SECTION */
+
+    .skills-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+/* <---- 600PX ----> */
+
+@media screen and (max-width: 600px) {
+
+    /* <!-- HERO  --> */
+
+    .hero-image ul li {
+        height: 5vh;
+        width: 5vw;
+    }
+
+}
+
+/* <---- 450PX ----> */
+
+@media screen and (max-width: 450px) {
+
+    html {
+        font-size: 80%;
+    }
+
+    /* <!-- HERO  --> */
+
+    .hero-image ul li {
+        height: 4vh;
+        width: 4vw;
+    }
+
+}
+
+/* <---- 400PX ----> */
+
+@media screen and (max-width: 400px) {
+
+    /* <!-- HERO  --> */
+
+    .hero {
+        padding: 0 1rem;
+    }
+
+    /* <!-- ABOUT  --> */
+
+    .about {
+        width: 100%;
+    }
+
+}
+
+/* <--- 350PX ---> */
+
+@media screen and (max-width: 350px) {
+
+    /* SKILLS CONTAINER */
+
+    .skills-container {
+        display: grid;
+        grid-template-columns: 1fr;
     }
 
 }
