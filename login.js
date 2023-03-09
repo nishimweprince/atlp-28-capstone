@@ -2,6 +2,8 @@
 
 const validEmail = 'princeelysee@gmail.com', validPassword = 'nishimwe';
 
+const api_url = "http://localhost:4000/api";
+
 let login_email = document.getElementById("login-email");
 let login_submit = document.getElementById("login-submit");
 let login_password = document.getElementById("login-password");
@@ -21,11 +23,32 @@ login_submit.addEventListener("click", (e) => {
         if (login_email.value == validEmail && login_password.value == validPassword) {
         login_email_error.style.display = "none";
         login_password_error.style.display = "none";
+
+        var logins = {
+            email: login_email.value.trim(),
+            password: login_password.value.trim()
+        }
+        
+        console.log(logins);
+
+        fetch(`${api_url}/login`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(logins)
+        })
+        .then(res => res.json())
+        .then((data) => {
+            document.cookie = `token=${data.token}; Path=/;`;
+            console.log(data)
+        });
+
         login_email.value = "";
         login_password.value = "";
 
         sessionStorage.setItem("isLoggedIn", true);
-        window.location.href = './dashboard-home.html';
+        setTimeout(() => {
+            window.location.href = "./dashboard-home.html";
+        }, 1500);
     }
     else {
         login_email_error.style.display = "none";

@@ -39,6 +39,8 @@ let postObj = {
     author_github: ""
 }
 
+const url = "http://localhost:4000/api";
+
 // CREATE BLOG
 
 let blog_submit = document.getElementById("blog-submit");
@@ -72,9 +74,22 @@ blog_submit.addEventListener("click", (e) => {
         posts.push(postObj);
         localStorage.setItem("posts", JSON.stringify(posts));
 
+        const cookie = document.cookie.split('=')[1]; //
+        console.log(cookie);
+
+        fetch(`${url}/blogs`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json",
+            "credentials": `${cookie}`
+        },
+            body: JSON.stringify(postObj)
+        })
+        .then(res => res.json())
+        .then(data => console.log(data))
+
+        console.log(posts);
         blog_title.value = "";
         blog_body.value = "";
-        console.log(posts);
     }
 
 });
