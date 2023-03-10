@@ -21,7 +21,10 @@ fetch(`${api_url}/${blogId}`, {
     const result = data.data;
     console.log(result)
     renderSingleBlog(result);
+    renderComments(result.comments);
+    console.log(result.comments);
 });
+
 
 // SINGLE BLOG PAGE
 
@@ -106,6 +109,7 @@ let commentObj = {
 
 }
 
+// CREATE COMMENT
 const createComment = (e) => {
 
     e.preventDefault();
@@ -115,6 +119,18 @@ const createComment = (e) => {
     commentObj.body = comment_body.value;
 
     comments.push(commentObj);
+
+    fetch(`${api_url}/${blogId}/comment`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(commentObj),
+    })
+    .then((response) => response.json())
+    .then((data) => {
+        console.log(data);
+    });
 
     localStorage.setItem("comments", JSON.stringify(comments));
 
@@ -130,8 +146,14 @@ const createComment = (e) => {
 
 let renderComments = (arr) => {
 
+    console.log(arr)
 
     arr.forEach((comment) => {
+
+    const date = new Date(comment.createdAt);
+
+    console.log(date);
+
     let comment_box = document.createElement("div");
     comment_box.classList.add("comment-box");
 
@@ -145,7 +167,7 @@ let renderComments = (arr) => {
 
         let comment_date = document.createElement("p");
         comment_date.setAttribute("id", "comment-date");
-        comment_date.innerText = comment.date;
+        comment_date.innerText = String(date).split("GMT")[0];
 
         comment_box.appendChild(comment_heading);
         comment_box.appendChild(comment_text);
@@ -155,11 +177,6 @@ let renderComments = (arr) => {
     });
 
 }
-
-window.onload = () => {
-    renderComments(comments);
-    console.log(comments);
-};
 
 // <---- PAGINATION ---->
 

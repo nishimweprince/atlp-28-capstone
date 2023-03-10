@@ -28,6 +28,20 @@ hamburger_menu[1].addEventListener("click", () => {
 let messages = localStorage.getItem("messages") 
 ? JSON.parse(localStorage.getItem("messages")) : [];
 
+// API URL
+const api_url = "http://localhost:4000/api";
+
+// FETCH MESSAGES
+
+fetch(`${api_url}/messages`, {
+    method: "GET",
+})
+.then((response) => response.json())
+.then((data) => {
+    const results = data.data;
+    renderMessages(results);
+})
+
 let messages_container = document.querySelector('.messages-container');
 
 let renderMessages = (arr) => {
@@ -51,7 +65,7 @@ let renderMessages = (arr) => {
 
       let message_date = document.createElement("p");
       message_date.setAttribute("id", `message-date`);
-      message_date.innerText = message.date;
+      message_date.innerText = message.createdAt.split("T")[0].split("-").reverse().join("/");
 
       message_box.appendChild(message_heading);
       message_box.appendChild(message_email);
@@ -62,11 +76,6 @@ let renderMessages = (arr) => {
 
     });
 
-}
-
-window.onload = () => {
-    renderMessages(messages);
-    console.log(messages)
 }
 
 // <---- PAGINATION ---->

@@ -49,6 +49,8 @@ var Email = {
   },
 };
 
+const api_url = "http://localhost:4000/api"
+
 let messages = localStorage.getItem('messages')
 ? JSON.parse(localStorage.getItem('messages')) : [];
 
@@ -108,77 +110,83 @@ newsletter_submit.addEventListener("click", (e) => {
     
 });
 
-// <---- FORM VALIDATIONS ---->
+  // <---- FORM VALIDATIONS ---->
 
-const contact_name = document.getElementById("contact-form-name");
-const contact_email = document.getElementById("contact-form-email");
-const contact_message = document.getElementById("contact-form-message");
-const contact_submit = document.getElementById("contact-form-submit");
+  const contact_submit = document.getElementById("contact-form-submit");
 
-contact_submit.addEventListener('click', (e) => {
-
-  const contact_name = document.getElementById("contact-form-name");
-  const contact_email = document.getElementById("contact-form-email");
-  const contact_message = document.getElementById("contact-form-message");
-
-  e.preventDefault();
-
-  let messageObj = {
-    name: contact_name.value,
-    email: contact_email.value,
-    body: contact_message.value,
-    date: date()
-  }
-
-  messages.push(messageObj);
-  localStorage.setItem('messages', JSON.stringify(messages));
-
-  console.log(messages);
-})
-contact_submit.addEventListener("click", (e) => {
+  contact_submit.addEventListener("click", (e) => {
     e.preventDefault();
-    const emailRegex = /^([a-zA-Z0-9\._]+)@([a-zA-Z0-9])+.([a-z]+)(.[a-z]+)(.[a-z]+)?$/;
-    const nameRegex = /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/;
-    if(
-        (emailRegex.test(contact_email.value))
-    && (nameRegex.test(contact_name.value))
-    && (nameRegex.test(contact_message.value))
-    )
-    {
-        contact_form_error.style.display = "none";
-        contact_form_success.style.display = "block";
-        contact_name.value = "";
-        contact_email.value = "";
-        contact_message.value = "";
+
+    const contact_name = document.getElementById("contact-form-name");
+    const contact_email = document.getElementById("contact-form-email");
+    const contact_message = document.getElementById("contact-form-message");
+
+    const emailRegex =
+      /^([a-zA-Z0-9\._]+)@([a-zA-Z0-9])+.([a-z]+)(.[a-z]+)(.[a-z]+)?$/;
+    const nameRegex = /^\S.*\S$/;
+    console.log(
+      emailRegex.test(contact_email.value),
+      nameRegex.test(contact_name.value)
+    );
+    if (
+      emailRegex.test(contact_email.value) &&
+      nameRegex.test(contact_name.value) &&
+      nameRegex.test(contact_message.value)
+    ) {
+      let messageObj = {
+        name: contact_name.value,
+        email: contact_email.value,
+        body: contact_message.value,
+        date: date(),
+      };
+
+      fetch(`${api_url}/messages`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(messageObj),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+        });
+
+      contact_form_error.style.display = "none";
+      contact_form_success.style.display = "block";
+      contact_name.value = "";
+      contact_email.value = "";
+      contact_message.value = "";
+
+      // <---- SEND EMAIL ---->
+
+      Email.send({
+        SecureToken: "6f7acccb-1b5d-46f5-86c3-45c7af504c84",
+        To: "princeelysee@gmail.com",
+        From: "princeelysee@gmail.com",
+        Subject: `${contact_name.value} has contacted you from the website form`,
+        Body: `
+        ${contact_name.value} has sent you a message:
+    
+        ${contact_message.value}
+        `,
+      })
+        .then((message) => {
+          alert("We have received your message in our inbox");
+          console.log(message, contact_email.value);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+
+      messages.push(messageObj);
+      localStorage.setItem("messages", JSON.stringify(messages));
+    } else {
+      contact_form_error.style.display = "block";
+      contact_form_success.style.display = "none";
+      console.log(contact_message.value);
     }
-    else {
-        contact_form_error.style.display = "block";
-        contact_form_success.style.display = "none";
-        console.log(contact_message.value);
-    }
-
-    // <---- SEND EMAIL ---->
-
-
-    Email.send({
-      SecureToken: "6f7acccb-1b5d-46f5-86c3-45c7af504c84",
-      To: "princeelysee@gmail.com",
-      From: "princeelysee@gmail.com",
-      Subject: `${contact_name.value} has contacted you from the website form`,
-      Body: `
-      ${contact_name.value} has sent you a message:
-  
-      ${contact_message.value}
-      `,
-    }).then((message) => {
-      alert('We have received your message in our inbox');
-      console.log(message, contact_email.value);
-    }).catch((error) => {
-      console.log(error)
-    })
-    ;
-
-});
+  });
 
 // GET DATE
 
