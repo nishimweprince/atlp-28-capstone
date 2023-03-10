@@ -4,6 +4,11 @@ let posts = localStorage.getItem("posts")
 
 console.log(posts);
 
+// LIKES BUTTON
+const like_button = document.getElementById("like-icon");    
+const likes_count = document.getElementById("likes-number");
+let count_number = likes_count.innerText;
+
 // API URL
 const api_url = "http://localhost:4000/api/blogs";
 
@@ -22,6 +27,7 @@ fetch(`${api_url}/${blogId}`, {
     console.log(result)
     renderSingleBlog(result);
     renderComments(result.comments);
+    renderLikes(result.likes);
     console.log(result.comments);
 });
 
@@ -245,3 +251,43 @@ paginationRight.addEventListener("click", (e) => {
 document.addEventListener("DOMContentLoaded", createPages(comments));
 
 comment_submit.addEventListener("click", createComment);
+
+// CREATE LIKES
+
+like_button.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    const liked = like_button.getAttribute("liked");
+
+    if (!liked || liked == "false"){
+        fetch(`${api_url}/${blogId}/like`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        })
+        .then((response) => response.json())
+        .then((data) => {
+            like_button.setAttribute("fill", "#58287F");
+            like_button.setAttribute("liked", true);
+            count_number = data.data.likes;
+            likes_count.innerText = count_number;
+            console.log(data, "liked");
+        })
+    }
+    else {
+        like_button.setAttribute("fill", "#ffff");
+        like_button.setAttribute("liked", false);
+        count_number = Number(count_number) - 1;
+        likes_count.innerText = count_number;
+
+        console.log("unliked");
+    }
+
+});
+
+// RENDER LIKES COUNT
+
+const renderLikes = (number) => {
+    likes_count.innerText = number;
+};

@@ -14,6 +14,9 @@ body {
     --purple: #58287F;
     --green: #0B9444;
     --chocolate: #1A0000;
+
+    width: 90%;
+    margin: 0 auto;
 }
 
 /* <!-- UNIVERSAL --> */
@@ -110,6 +113,7 @@ a:hover {
     align-items: center;
     gap: 10px;
     padding: 20px 80px;
+    margin: 0 auto;
 }
 
 .author img {
@@ -147,6 +151,11 @@ a:hover {
 .blog-title {
     padding: 10px 80px;
     /* border: 2px solid red; */
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
 
 }
 
@@ -166,10 +175,11 @@ a:hover {
     display: flex;
     justify-content: center;
     padding: 10px 80px;
+    margin: 20px auto;
 }
 
 .blog-image img {
-    width: 100%;
+    max-width: 60vw;
 }
 
 /* <---- BLOG TEXT SECTION -------> */
@@ -196,6 +206,44 @@ a:hover {
 .blog-text-container p {
     line-height: 2;
 }
+
+/* <--- LIKES SECTION ---> */
+
+.likes-section {
+    border: 2px solid #58287F;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: fit-content;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 1px 1px 1px 0.4px rgba(88, 40, 127, 0.25)
+}
+
+.like-icon {
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    align-items: center;
+}
+
+.like-icon svg {
+    cursor: pointer;
+    width: 50px;
+    display: inline;
+}
+
+/* LIKES COUNT */
+
+#likes-number {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--purple);
+}
+
+/* <--- COMMENTS SECTION ---> */
 
 .create-comment {
     /* border: 2px solid red; */
