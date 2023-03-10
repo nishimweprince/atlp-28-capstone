@@ -1,5 +1,3 @@
-// FOR MIGRATION
-
 if (sessionStorage.getItem("isLoggedIn") !== "true") {
     window.location.href = './login.html';
 }
@@ -42,16 +40,21 @@ hamburger_menu[1].addEventListener("click", () => {
 
 const api_url = "http://localhost:4000/api/blogs";
 
+// COOKIE
+
+const cookie = document.cookie.split("=")[1];
+
 // FETCH BLOGS
 
 fetch(`${api_url}`, {
     method: "GET"
 })
-.then((response) => response.json())
-.then((data) => {
-    const result = data.data;
-    console.log(result)
-    renderBlogs(result);
+.then(response => response.json())
+.then(data => {
+    let results = data.data;
+    console.log(results);
+    renderBlogs(results);
+
 })
 
 let posts = localStorage.getItem("posts") 
@@ -63,6 +66,7 @@ let renderBlogs = (arr) => {
 
     let mappedArr = arr.map((post, index) => {
         return {
+            id: post._id,
             title: post.title,
             body: wrapText(post.body),
             author_name: post.author_name,
@@ -75,44 +79,36 @@ let renderBlogs = (arr) => {
     let blog_box = document.createElement("div");
     blog_box.classList.add("blog-box");
 
+    console.log(post)
+
     blog_box.innerHTML = `
     
                 <div class="blog-image">
                     <img src="${post.image}" alt="Blog Image">
                 </div>
-
                 <p id="blog-id">
-                    #: 00${index + 1}
+                    #: 0012
                 </p>
-
                 <h1>
                     ${post.title}
                 </h1>
-
                 <span class="blog-author">
                     <img src="./images/nishimwe-formal.jpg" alt="Author image">
                     <p>
                         ${post.author_name}
                     </p>
                 </span>
-
                 <p id="blog-text">
                     ${post.body}
                 </p>
-
                 <div class="blog-cta">
-
-                    <a href="#" id="blog-edit">
+                    <a onClick="editPost('${post.id}')" href="#" id="blog-edit">
                         <img src="./images/edit-icon.png" alt="" id="edit-icon">
                     </a>
-
-                    <a href="#" id="blog-delete">
+                    <a onClick="deletePost('${post.id}')" href="#" id="blog-delete">
                         <img src="./images/delete-icon.png" alt="" id="delete-icon">
                     </a>
-
                 </div>
-
-
     `;
 
     blogs_container.appendChild(blog_box);
@@ -121,6 +117,102 @@ let renderBlogs = (arr) => {
 
 }
 
+// <---- DELETE POST ---->
+
+let deletePost = (id) => {
+
+    fetch(`${api_url}/${id}`, {
+        method: "DELETE",
+        headers: {
+            "credentials": `${cookie}`
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+    })
+
+    setTimeout(() => {
+        window.location.reload();
+    }, 3000);
+    
+}
+
+// <--- EDIT POST ---->
+
+let edit_form = document.querySelector(".edit-form-container");
+let edit_modal_container = document.querySelector(".edit-modal-container");
+
+let editPost = (id) => {
+
+    fetch(`${api_url}/${id}`, {
+        method: "GET"
+    })
+    .then(response => response.json())
+    .then(data => {
+
+        const blog = data.data;
+
+        edit_modal_container.style.display = "flex";
+    
+        edit_form.innerHTML = `
+        
+        <span class="input-container">
+                        <label for="blog-title">Blog Title</label>
+                        <input type="text" value="${blog.title}" name="blog-title" id="blog-title">
+                    </span>
+        
+                    <span class="input-container">
+                        <label for="blog-content">Author name</label>
+                        <input type="text" name="author-name" value="${blog.author_name}" id="author-name">
+                    </span>
+        
+                    <span class="input-container">
+                        <label for="blog-body">Blog Body</label>
+                        <textarea name="blog-body" id="blog-body" cols="30" rows="10">${blog.body}</textarea>
+                    </span>
+        
+                    <span class="edit-blog-cta">
+                        <input onclick="submitEdit('${blog._id}')" type="submit" class="btn-primary" value="Update blog" id="blog-submit">
+                    </span>
+        `
+
+    })
+
+
+}
+
+// SUBMIT BLOG UPDATE
+let submitEdit = (id) => {
+
+    let blog_title = document.querySelector("#blog-title").value;
+    let blog_body = document.querySelector("#blog-body").value;
+    let author_name = document.querySelector("#author-name").value;
+
+    let blogUpdated = {
+        title: blog_title,
+        body: blog_body,
+        author_name: author_name
+    }
+
+    fetch(`${api_url}/${id}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            "credentials": `${cookie}`
+        },
+        body: JSON.stringify(blogUpdated)
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+    })
+
+    setTimeout(() => {
+        window.location.reload();
+    }, 3000);
+
+}
 
 // <---- PAGINATION ---->
 
@@ -190,18 +282,3 @@ paginationRight.addEventListener("click", (e) => {
 
 
 document.addEventListener("DOMContentLoaded", createPages(posts));
-
-// <---- DELETE POST ---->
-
-let deletePost = (e) => {
-
-    e.preventDefault();
-    let deleteBtn = document.querySelectorAll("#blog-delete");
-
-    deleteBtn.addEventListener("click", (e) => {
-        e.preventDefault();
-
-        let post_id = e.target.parentElement.parentElement.parentElement.children[1].innerText;
-    });
-    
-}
