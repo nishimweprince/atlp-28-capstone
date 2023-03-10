@@ -49,7 +49,7 @@ var Email = {
   },
 };
 
-const api_url = "http://localhost:4000/api"
+const api_url = "https://angry-leotard-frog.cyclic.app/api"
 
 let messages = localStorage.getItem('messages')
 ? JSON.parse(localStorage.getItem('messages')) : [];

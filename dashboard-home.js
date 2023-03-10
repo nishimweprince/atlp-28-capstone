@@ -39,7 +39,7 @@ let postObj = {
     author_github: ""
 }
 
-const url = "http://localhost:4000/api";
+const url = "https://angry-leotard-frog.cyclic.app/api";
 
 // CREATE BLOG
 

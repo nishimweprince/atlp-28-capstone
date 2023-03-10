@@ -29,7 +29,7 @@ let messages = localStorage.getItem("messages")
 ? JSON.parse(localStorage.getItem("messages")) : [];
 
 // API URL
-const api_url = "http://localhost:4000/api";
+const api_url = "https://angry-leotard-frog.cyclic.app/api";
 
 // FETCH MESSAGES
 
@@ -40,6 +40,7 @@ fetch(`${api_url}/messages`, {
 .then((data) => {
     const results = data.data;
     renderMessages(results);
+    createPages(results);
 })
 
 let messages_container = document.querySelector('.messages-container');
@@ -142,6 +143,3 @@ paginationRight.addEventListener("click", (e) => {
     
         showSlide(currentPage);
 });
-
-
-document.addEventListener("DOMContentLoaded", createPages(messages));

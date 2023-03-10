@@ -4,9 +4,9 @@ let posts = localStorage.getItem("posts")
 
   let blogs = [];
 
-  const api_url = "http://localhost:4000/api/blogs";
+  const api_url = "https://angry-leotard-frog.cyclic.app/api";
 
-  fetch(`${api_url}`, {
+  fetch(`${api_url}/blogs`, {
     method: "GET"
   })
     .then((response) => response.json())

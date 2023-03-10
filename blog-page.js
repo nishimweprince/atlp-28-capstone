@@ -10,7 +10,7 @@ const likes_count = document.getElementById("likes-number");
 let count_number = likes_count.innerText;
 
 // API URL
-const api_url = "http://localhost:4000/api/blogs";
+const api_url = "https://angry-leotard-frog.cyclic.app/api";
 
 // CATCH BLOG ID FROM LOCAL STORAGE
 let blogId = localStorage.getItem("blogId");
@@ -18,7 +18,7 @@ console.log(blogId);
 
 // FETCH SINGLE BLOG
 
-fetch(`${api_url}/${blogId}`, {
+fetch(`${api_url}/blogs/${blogId}`, {
     method: "GET",
 })
 .then((response) => response.json())
@@ -28,6 +28,7 @@ fetch(`${api_url}/${blogId}`, {
     renderSingleBlog(result);
     renderComments(result.comments);
     renderLikes(result.likes);
+    createPages(result.comments);
     console.log(result.comments);
 });
 
@@ -126,7 +127,7 @@ const createComment = (e) => {
 
     comments.push(commentObj);
 
-    fetch(`${api_url}/${blogId}/comment`, {
+    fetch(`${api_url}/blogs/${blogId}/comment`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
@@ -248,8 +249,6 @@ paginationRight.addEventListener("click", (e) => {
 });
 
 
-document.addEventListener("DOMContentLoaded", createPages(comments));
-
 comment_submit.addEventListener("click", createComment);
 
 // CREATE LIKES
@@ -260,7 +259,7 @@ like_button.addEventListener("click", (e) => {
     const liked = like_button.getAttribute("liked");
 
     if (!liked || liked == "false"){
-        fetch(`${api_url}/${blogId}/like`, {
+        fetch(`${api_url}/blogs/${blogId}/like`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",

@@ -38,7 +38,7 @@ hamburger_menu[1].addEventListener("click", () => {
 
 // API URL
 
-const api_url = "http://localhost:4000/api/blogs";
+const api_url = "https://angry-leotard-frog.cyclic.app/api";
 
 // COOKIE
 
@@ -46,7 +46,7 @@ const cookie = document.cookie.split("=")[1];
 
 // FETCH BLOGS
 
-fetch(`${api_url}`, {
+fetch(`${api_url}/blogs`, {
     method: "GET"
 })
 .then(response => response.json())
@@ -121,7 +121,7 @@ let renderBlogs = (arr) => {
 
 let deletePost = (id) => {
 
-    fetch(`${api_url}/${id}`, {
+    fetch(`${api_url}/blogs/${id}`, {
         method: "DELETE",
         headers: {
             "credentials": `${cookie}`
@@ -145,7 +145,7 @@ let edit_modal_container = document.querySelector(".edit-modal-container");
 
 let editPost = (id) => {
 
-    fetch(`${api_url}/${id}`, {
+    fetch(`${api_url}/blogs/${id}`, {
         method: "GET"
     })
     .then(response => response.json())
@@ -195,7 +195,7 @@ let submitEdit = (id) => {
         author_name: author_name
     }
 
-    fetch(`${api_url}/${id}`, {
+    fetch(`${api_url}/blogs/${id}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",

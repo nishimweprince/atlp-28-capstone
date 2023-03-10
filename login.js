@@ -2,7 +2,7 @@
 
 const validEmail = 'princeelysee@gmail.com', validPassword = 'nishimwe';
 
-const api_url = "http://localhost:4000/api";
+const api_url = "https://angry-leotard-frog.cyclic.app/api/";
 
 let login_email = document.getElementById("login-email");
 let login_submit = document.getElementById("login-submit");
