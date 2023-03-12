@@ -12,6 +12,9 @@ let login_email_error = document.getElementById("login-email-error");
 let login_password_error = document.getElementById("login-password-error");
 let credentials_error = document.getElementById("credentials-error");
 
+let login_success = document.getElementById("login-success");
+let login_loader = document.getElementById("login-loader");
+
 login_submit.addEventListener("click", (e) => {
     e.preventDefault();
     const emailRegex = /^([a-zA-Z0-9\._]+)@([a-zA-Z0-9])+.([a-z]+)(.[a-z]+)(.[a-z]+)?$/;
@@ -20,6 +23,7 @@ login_submit.addEventListener("click", (e) => {
     if ((emailRegex.test(login_email.value)
         && nameRegex.test(login_password.value)
     )) {
+        login_loader.style.display = "block";
         var logins = {
             email: login_email.value.trim(),
             password: login_password.value.trim()
@@ -34,33 +38,38 @@ login_submit.addEventListener("click", (e) => {
         })
         .then(res => res.json())
         .then((data) => {
+            credentials_error.style.display = "none";
+            login_success.style.display = "block";
+            login_loader.style.display = "none";
             document.cookie = `token=${data.token}; Path=/;`;
             const role = data.data.role
 
             if (role == "user"){
                 setTimeout(() => {
                     window.location.href = "./blogs.html";
-                }, 2000);
+                }, 1500);
             }
             else {
                 setTimeout(() => {
                     window.location.href = "./dashboard-home.html";
-                }, 2000);
+                }, 1500);
             }
+
+            login_email.value = "";
+            login_password.value = "";
 
         })
         .catch((err) => {
             console.log(err);
+            credentials_error.style.display = "block";
+            login_loader.style.display = "none";
+            login_success.style.display = "none";
         });
-
-        login_email.value = "";
-        login_password.value = "";
 
         sessionStorage.setItem("isLoggedIn", true);
     }
     else {
-        login_email_error.style.display = "none";
-        credentials_error.style.display = "block";
+        login_email_error.style.display = "block";
     }
 
 });

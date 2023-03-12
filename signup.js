@@ -9,6 +9,10 @@ let signup_email_error = document.getElementById("signup-email-error");
 let signup_password_error = document.querySelectorAll(".signup-password-error");
 let signup_form_error = document.getElementById("signup-form-error");
 
+let signup_success = document.getElementById("signup-success");
+let signup_loader = document.getElementById("signup-loader");
+let signup_error = document.getElementById("signup-error");
+
 // REGULAR EXPRESSIONS FOR VALIDATION
 const emailRegex = /^([a-zA-Z0-9\._]+)@([a-zA-Z0-9])+.([a-z]+)(.[a-z]+)(.[a-z]+)?$/;
 const nameRegex = /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/;
@@ -21,18 +25,19 @@ signup_submit.addEventListener("click", (e) => {
         && signup_password.value.length >= 6
         && signup_password.value == signup_confirm_password.value
     ) {
+        signup_form_error.style.display = "none";
         signup_email_error.style.display = "none";
         signup_password_error.forEach((error) => {
             error.style.display = "none";
         });
+
+        signup_loader.style.display = "block";
 
         var signup = {
             username: signup_username.value.trim(),
             email: signup_email.value.trim(),
             password: signup_password.value.trim()
         }
-
-        console.log(signup);
 
         fetch(`${api_url}/signup`, {
             method: "POST",
@@ -42,14 +47,16 @@ signup_submit.addEventListener("click", (e) => {
         .then(res => res.json())
         .then((data) => {
             console.log(data);
-            if (data.data.role == "user"){
-                setTimeout(() => {
-                    window.location.href = "./dashboard-home.html";
-                }, 3000);
-            }
+            signup_success.style.display = "block";
+            signup_loader.style.display = "none";
+            setTimeout(() => {
+                window.location.href = "/login.html";
+            }, 1500);
         })
         .catch((err) => {
             console.log(err);
+            signup_error.style.display = "block";
+            signup_loader.style.display = "none";
         });
 
         signup_username.value = "";

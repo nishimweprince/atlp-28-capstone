@@ -215,9 +215,24 @@ a:hover {
 
 /* <--- SIGNUP VALIDATIONS ---> */
 
-#signup-email-error, #signup-password-error, #signup-confirm-password-error, #signup-form-error, #signup-username-error {
+#signup-email-error, #signup-password-error, #signup-confirm-password-error, #signup-form-error, #signup-username-error, #signup-error {
     color: red;
     display: none;
+}
+
+#signup-loader {
+    color: #58287F;
+    display: none;
+}
+
+#signup-success {
+    color: #58287F;
+    display: none;
+}
+
+form p {
+    text-align: center;
+    width: 90%;
 }
 
  /* <----- RESPONSIVENESS------->  */

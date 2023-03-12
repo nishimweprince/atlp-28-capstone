@@ -39,7 +39,7 @@ let postObj = {
     author_github: ""
 }
 
-const url = "https://angry-leotard-frog.cyclic.app/api";
+const api_url = "https://angry-leotard-frog.cyclic.app/api";
 
 // CREATE BLOG
 
@@ -77,7 +77,7 @@ blog_submit.addEventListener("click", (e) => {
         const cookie = document.cookie.split('=')[1]; //
         console.log(cookie);
 
-        fetch(`${url}/blogs`, {
+        fetch(`${api_url}/blogs`, {
             method: "POST",
             headers: { "Content-Type": "application/json",
             "credentials": `${cookie}`

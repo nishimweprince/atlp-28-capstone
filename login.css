@@ -404,6 +404,11 @@ form input[type="submit"] {
     display: none;
 }
 
+#login-loader, #login-success {
+    color: #58287F;
+    display: none;
+}
+
 /* <----- RESPONSIVENESS------->  */
 
     /* HAMBURGER MENU */
