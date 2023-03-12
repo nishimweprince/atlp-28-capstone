@@ -43,6 +43,15 @@ const url = "https://angry-leotard-frog.cyclic.app/api";
 
 // CREATE BLOG
 
+const handleUpload = (file) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.addEventListener("load", () => {
+    var result = reader.result;
+    });
+    console.log(result);
+};
+
 let blog_submit = document.getElementById("blog-submit");
 
 blog_submit.addEventListener("click", (e) => {
@@ -60,36 +69,29 @@ blog_submit.addEventListener("click", (e) => {
 
     let image = document.getElementById("display-image");
 
-    const reader = new FileReader();
-    reader.readAsDataURL(blog_image);
-    reader.onload = () => {
-        postObj.image = reader.result;
-        postObj.title = blog_title.value;
-        postObj.body = blog_body.value;
-        postObj.author_name = author_name.value;
-        postObj.author_twitter = author_twitter.value;
-        postObj.author_linkedin = author_linkedin.value;
-        postObj.author_github = author_github.value;
+    handleUpload(blog_image);
 
-        posts.push(postObj);
-        localStorage.setItem("posts", JSON.stringify(posts));
+    // postObj.title = blog_title.value;
+    // postObj.body = blog_body.value;
+    // postObj.author_name = author_name.value;
+    // postObj.author_twitter = author_twitter.value;
+    // postObj.author_linkedin = author_linkedin.value;
+    // postObj.author_github = author_github.value;
 
-        const cookie = document.cookie.split('=')[1]; //
-        console.log(cookie);
+    // posts.push(postObj);
+    // localStorage.setItem("posts", JSON.stringify(posts));
 
-        fetch(`${url}/blogs`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json",
-            "credentials": `${cookie}`
-        },
-            body: JSON.stringify(postObj)
-        })
-        .then(res => res.json())
-        .then(data => console.log(data))
+    // const cookie = document.cookie.split('=')[1]; //
+    // console.log(cookie);
 
-        console.log(posts);
-        blog_title.value = "";
-        blog_body.value = "";
-    }
+    // fetch(`${url}/blogs`, {
+    //     method: "POST",
+    //     headers: { "Content-Type": "application/json",
+    //     "credentials": `${cookie}`
+    // },
+    //     body: JSON.stringify(postObj)
+    // })
+    // .then(res => res.json())
+    // .then(data => console.log(data))
 
 });
