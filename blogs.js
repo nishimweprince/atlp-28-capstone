@@ -1,10 +1,11 @@
+import {api_url} from "./index.js";
 let posts = localStorage.getItem("posts")
   ? JSON.parse(localStorage.getItem("posts"))
   : [];
 
   let blogs = [];
 
-  const api_url = "https://angry-leotard-frog.cyclic.app/api";
+  // const api_url = "https://angry-leotard-frog.cyclic.app/api";
 
   fetch(`${api_url}/blogs`, {
     method: "GET"

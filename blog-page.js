@@ -1,3 +1,4 @@
+import { api_url } from "./index.js";
 let posts = localStorage.getItem("posts")
   ? JSON.parse(localStorage.getItem("posts"))
   : [];
@@ -10,7 +11,7 @@ const likes_count = document.getElementById("likes-number");
 let count_number = likes_count.innerText;
 
 // API URL
-const api_url = "https://angry-leotard-frog.cyclic.app/api";
+// const api_url = "https://angry-leotard-frog.cyclic.app/api";
 
 // CATCH BLOG ID FROM LOCAL STORAGE
 let blogId = localStorage.getItem("blogId");

@@ -1,8 +1,8 @@
 // <---- LOGIN VALIDATIONS ---->
+import {api_url} from "./index.js";
 
-const validEmail = 'princeelysee@gmail.com', validPassword = 'nishimwe';
 
-const api_url = "https://angry-leotard-frog.cyclic.app/api/";
+// const api_url = "https://angry-leotard-frog.cyclic.app/api/";
 
 let login_email = document.getElementById("login-email");
 let login_submit = document.getElementById("login-submit");
@@ -20,10 +20,6 @@ login_submit.addEventListener("click", (e) => {
     if ((emailRegex.test(login_email.value)
         && nameRegex.test(login_password.value)
     )) {
-        if (login_email.value == validEmail && login_password.value == validPassword) {
-        login_email_error.style.display = "none";
-        login_password_error.style.display = "none";
-
         var logins = {
             email: login_email.value.trim(),
             password: login_password.value.trim()
@@ -60,12 +56,6 @@ login_submit.addEventListener("click", (e) => {
     else {
         login_email_error.style.display = "none";
         credentials_error.style.display = "block";
-    }
-}
-
-    else {
-        login_email_error.style.display = "block";
-        console.log("error");
     }
 
 });

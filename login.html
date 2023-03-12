@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Login</title>
 </head>
+
 <body>
 
     <div class="hero-nav">
@@ -75,45 +77,200 @@
 
         <div class="login-hero">
 
-           <form action="#" id="login-form" class="login-container">
+            <form action="#" id="login-form" class="login-container">
 
-            <h1>
-                Log into <span>Admin</span> account
-            </h1>
-            <hr>
+                <h1>
+                    Log into <span>Admin</span> account
+                </h1>
+                <hr>
 
-            <span class="input-container">
-                <label for="username">Email</label>
-                <input type="text" id="login-email">
-                <p id="login-email-error">
-                    Please enter a valid email address
+                <span class="input-container">
+                    <label for="username">Email</label>
+                    <input type="text" id="login-email">
+                    <p id="login-email-error">
+                        Please enter a valid email address
+                    </p>
+                </span>
+                <span class="input-container">
+                    <label for="username">Password</label>
+                    <input type="password" id="login-password">
+                    <p id="login-password-error">
+                        Please enter a password
+                    </p>
+                </span>
+
+                <p id="credentials-error">
+                    Email or password not correct!
                 </p>
-            </span>
-            <span class="input-container">
-                <label for="username">Password</label>
-                <input type="password" id="login-password">
-                <p id="login-password-error">
-                 Please enter a password
-                </p>
-            </span>
 
-            <p id="credentials-error">
-                Email or password not correct!
-            </p>
+                <span class="input-container">
+                    <input type="submit" value="Login" id="login-submit" class="btn-primary">
+                    <a href="#">
+                        Forgot password?
+                    </a>
+                </span>
 
-            <span class="input-container">
-            <input type="submit" value="Login" id="login-submit" class="btn-primary">
-            <a href="#">
-                Forgot password?
-            </a>
-            </span>
-
-           </form>
+            </form>
 
         </div>
-    
+    </div>
 
-<script src="login.js"></script>
-<!-- <script src="index.js"></script> -->
+        <!-- FOOTER  -->
+
+        <div class="footer">
+
+            <!-- FOOTER UP -->
+    
+            <div class="footer-up">
+    
+                <span>
+                    <div class="quick-links">
+    
+                        <h1>
+                            Quick Links
+                        </h1>
+        
+                        <ul>
+        
+                            <li>
+                                <a href="./index.html#about">
+                                    About
+                                </a>
+                            </li>
+        
+                            <li>
+                                <a href="./blogs.html">
+                                    Blog
+                                </a>
+                            </li>
+        
+                            <li>
+                                <a href="#footer">
+                                    Contact
+                                </a>
+                            </li>
+        
+                            <li>
+                                <a id="admin-link" href="./login.html">
+                                    Admin
+                                </a>
+                            </li>
+        
+                        </ul>
+        
+                    </div>
+    
+                    <div class="newsletter">
+                            
+                            <h1>
+                                Newsletter
+                            </h1>
+        
+                            <p>
+                                Subscribe to our newsletter and get our latest news and updates.
+                            </p>
+        
+                            <form id="newsletter-form" action="">
+                                <input type="email" id="newsletter-email" placeholder="Email">
+                                <p id="newsletter-error">Please enter a valid email</p>
+                                <p id="newsletter-success">You have subscribed to our newsletter successfully!</p>
+                                <div class="form-submit">
+                                    <input class="btn-primary" id="newsletter-submit" type="submit" value="Subscribe">
+                                </div>
+                            </form>
+                    </div>
+                </span>
+    
+                <div class="form-container" id="footer-form">
+    
+                    <h1>
+                        Leave a quick message
+                    </h1>
+    
+                    <form action="">
+                        <input type="text" id="contact-form-name" placeholder="Name">
+                        <p id="contact-name-error">
+                            Please enter a valid name
+                        </p>
+                        <input type="email" id="contact-form-email" placeholder="Email">
+                        <p id="contact-email-error">
+                            Please enter a valid email
+                        </p>
+                        <textarea name="" id="contact-form-message" cols="50" rows="5" placeholder="Message"></textarea>
+                        <p id="contact-message-error">
+                            Please enter a valid message
+                        </p>
+                        <p id="contact-form-success">
+                            Thank you for reaching out!
+                            I will respond ASAP!
+                        </p>
+                        <p id="contact-form-error">
+                            Please make sure you have provided valid information
+                        </p>
+                        <div class="form-submit">
+                            <input class="btn-primary" id="contact-form-submit" type="submit" value="Send">
+                        </div>
+                    </form>
+    
+                </div>
+    
+            </div>
+    
+            <!-- FOOTER DOWN  -->
+    
+            <div class="footer-down">
+    
+                <div class="copyright-heading">
+    
+                    <h1>
+                        nishimwe<span>Prince</span>
+                    </h1>
+                    <p>
+                        <span>Fullstack Web Developer</span> & IT Support
+                    </p>
+    
+                </div>
+    
+                <div class="copyright-social-icons">
+    
+                    <ul>
+                        <li>
+                            <a href="https://github.com/nishimweprince">
+                                <img src="./images/github-icon.png" alt="Github icon">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.linkedin.com/in/nishimweprince">
+                                <img src="./images/linkedin-icon.png" alt="LinkedIn icon">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.twitter.com/nishimweprince">
+                                <img src="./images/twitter-icon.png" alt="Twitter icon">
+                            </a>
+                        </li>
+                    </ul>
+    
+                </div>
+    
+                <div class="copyright-footer">
+    
+                    <p>
+                        &copy; 2021 Nishimwe Prince
+                    </p>
+    
+                    <p>
+                        All rights reserved
+                    </p>
+    
+                </div>
+    
+            </div>
+    
+        </div>
+
+
+    <script type="module" src="./login.js"></script>
 </body>
+
 </html>

@@ -214,3 +214,5 @@ const date = () => {
 
   return formattedDate;
 };
+
+export { api_url, date };

@@ -4,16 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="stylesheet" href="blog-page.css">
+    <link rel="stylesheet" href="signup.css">
     <link rel="shortcut icon" href="./images/favicon.png" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pros & Cons of Remote Work</title>
+    <title>Create account</title>
 </head>
 
 <body>
 
     <div class="hero-nav">
-
 
         <!-- NAVBAR  -->
 
@@ -29,12 +28,12 @@
                 <ul>
                     <li><a href="./index.html#about">About</a></li>
                     <li><a href="./blogs.html">Blog</a></li>
-                    <li><a href="#footer">Contact</a></li>
+                    <li><a href="./index.html#footer">Contact</a></li>
                 </ul>
             </div>
 
             <div class="btn-primary navbar-cta">
-                <a href="./index.html#about">Portfolio</a>
+                <a href="./index.html#portfolio">Portfolio</a>
             </div>
 
             <div class="hamburger responsive">
@@ -64,7 +63,7 @@
                 <ul>
                     <li><a href="./index.html#about">About</a></li>
                     <li><a href="./blogs.html">Blog</a></li>
-                    <li><a href="#footer">Contact</a></li>
+                    <li><a href="./index.html#footer">Contact</a></li>
                 </ul>
             </div>
 
@@ -73,142 +72,62 @@
             </div>
 
         </div>
-
-        </div>
-
-        <div class="hero">
-
-            <div class="author">
-
-                <img src="./images/nishimwe-formal.jpg" alt="Author image">
-
-                <section>
-                    <p>
-                        Nishimwe Prince
-                    </p>
-                    <ul class="author-icons">
-                        <li><a href="https://www.twitter.com/nishimweprince"><img src="./images/twitter-icon.png" alt="Author social media icon"></a></li>
-                        <li><a href="https://www.linkedin.com/in/nishimweprince"><img src="./images/linkedin-icon.png" alt="Author social media icon"></a></li>
-                        <li><a href="https://github.com/nishimweprince"><img src="./images/github-icon.png" alt="Author social media icon"></a></li>
-                    </ul>
-                </section>
-
-            </div>
-
-            <div class="blog-title">
-
-            </div>
-
-            <div class="blog-image">
-            </div>
-
-        </div>
-
     </div>
 
-    <!-- BLOG TEXT SECTION -->
+    <!-- HERO -->
 
-    <div class="blog-text">
+    <div class="signup-hero">
 
-        <div class="blog-text-container">
+        <form action="#" id="signup-form" class="signup-container">
 
-        </div>
+            <h1>
+               Create your account here
+            </h1>
+            <hr>
 
-    </div>
-
-    <div class="likes-section">
-        <span class="like-icon">
-            <svg id="like-icon" class="filled" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="#58287F"
-                class="w-6 h-6">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                    d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
-            </svg>
-        </span>
-    
-        <span class="like-count">
-            <p id="likes-number"></p>
-        </span>
-    
-    </div>
-
-    <div class="create-comment">
-
-        <h1>
-            Leave a comment
-        </h1>
-
-        <div class="comment-form-container">
-
-            <form class="form-create-comment" action="#">
-
-                <div class="comment-content">
-                    <div class="comment-address">
-                        <div class="input-container">
-                            <label for="name">Name</label>
-                            <input type="text" name="name" id="comment-name" placeholder="Enter your name">
-                        </div>
-
-                        <div class="input-container">
-                            <label for="email">Email</label>
-                            <input type="email" name="email" id="comment-email" placeholder="Enter your email">
-                        </div>
-                    </div>
-
-                    <div class="input-container">
-                        <label for="comment">Comment</label>
-                        <textarea name="comment" id="comment-body" cols="50" rows="30"
-                            placeholder="Enter your comment"></textarea>
-                    </div>
-                </div>
-
-                <div class="form-cta">
-                    <input type="submit" id="comment-submit" class="btn-primary" value="Share">
-                </div>
-
-            </form>
-
-        </div>
-
-    </div>
-
-    <div class="comments">
-
-        <h1>
-            Comments
-        </h1>
-
-        <div class="comments-carousel">
-
-
-            <div class="comments-container">
-                
-            </div>
-
-        </div>
-
-        <!-- PAGINATION  -->
-
-        <div class="pagination">
-
-            <a href="#" class="pagination-direction direction-left">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                    stroke="currentColor" class="w-6 h-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
-                </svg>
-            </a>
-
-            <span class="page-numbers-container">
-                
+            <span class="input-container">
+                <label for="username">Full Name</label>
+                <input type="text" id="signup-username">
+                <p id="signup-username-error">
+                    Please enter a valid name
+                </p>
             </span>
 
-            <a href="#" class="pagination-direction direction-right">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                    stroke="currentColor" class="w-6 h-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-                </svg>
-            </a>
+            <span class="input-container">
+                <label for="username">Email</label>
+                <input type="text" id="signup-email">
+                <p id="signup-email-error">
+                    Please enter a valid email address
+                </p>
+            </span>
+            <span class="input-container">
+                <label for="username">Password</label>
+                <input type="password" id="signup-password">
+                <p id="signup-password-error">
+                    Please enter a password
+                </p>
+            </span>
 
-        </div>
+            <span class="input-container">
+                <label for="username">Confirm Password</label>
+                <input type="password" id="signup-confirm-password">
+                <p id="signup-confirm-password-error">
+                    Please enter a password
+                </p>
+            </span>
+
+            <p id="signup-form-error">
+                Please fill in all the fields
+            </p>
+
+            <span class="input-container">
+                <input type="submit" value="Signup" id="signup-submit" class="btn-primary">
+                <a href="#">
+                    Forgot password?
+                </a>
+            </span>
+
+        </form>
 
     </div>
 
@@ -226,55 +145,55 @@
                     <h1>
                         Quick Links
                     </h1>
-    
+
                     <ul>
-    
+
                         <li>
                             <a href="./index.html#about">
                                 About
                             </a>
                         </li>
-    
+
                         <li>
                             <a href="./blogs.html">
                                 Blog
                             </a>
                         </li>
-    
+
                         <li>
                             <a href="#footer">
                                 Contact
                             </a>
                         </li>
-    
+
                         <li>
                             <a id="admin-link" href="./login.html">
                                 Admin
                             </a>
                         </li>
-    
+
                     </ul>
-    
+
                 </div>
 
                 <div class="newsletter">
-                        
-                        <h1>
-                            Newsletter
-                        </h1>
-    
-                        <p>
-                            Subscribe to our newsletter and get our latest news and updates.
-                        </p>
-    
-                        <form id="newsletter-form" action="">
-                            <input type="email" id="newsletter-email" placeholder="Email">
-                            <p id="newsletter-error">Please enter a valid email</p>
-                            <p id="newsletter-success">You have subscribed to our newsletter successfully!</p>
-                            <div class="form-submit">
-                                <input class="btn-primary" id="newsletter-submit" type="submit" value="Subscribe">
-                            </div>
-                        </form>
+
+                    <h1>
+                        Newsletter
+                    </h1>
+
+                    <p>
+                        Subscribe to our newsletter and get our latest news and updates.
+                    </p>
+
+                    <form id="newsletter-form" action="">
+                        <input type="email" id="newsletter-email" placeholder="Email">
+                        <p id="newsletter-error">Please enter a valid email</p>
+                        <p id="newsletter-success">You have subscribed to our newsletter successfully!</p>
+                        <div class="form-submit">
+                            <input class="btn-primary" id="newsletter-submit" type="submit" value="Subscribe">
+                        </div>
+                    </form>
                 </div>
             </span>
 
@@ -365,8 +284,7 @@
         </div>
 
     </div>
-
-<script type="module" src="./blog-page.js"></script>
+<script type="module" src="./signup.js"></script>
 </body>
 
 </html>
