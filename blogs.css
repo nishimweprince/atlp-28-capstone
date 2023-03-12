@@ -127,6 +127,21 @@ a:hover {
 }
 
 
+/* BLOGS LOADER */
+
+#loader-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20vh;
+}
+
+#blogs-loader {
+    font-size: 1.625rem;
+    color: #58287F;
+}
+
+
 /* <----- BLOG CONTAINER -----> */
 
 .blogs-section {
@@ -135,7 +150,6 @@ a:hover {
     gap: 20px;
     margin: 20px auto;
     height: auto;
-
 }
 
 .blogs-container {
@@ -146,7 +160,7 @@ a:hover {
     gap: 20px;
     padding: 20px 80px;
     height: auto;
-
+    display: none;
 }
 
 .blog-box {

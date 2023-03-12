@@ -3,8 +3,7 @@ let posts = localStorage.getItem("posts")
   ? JSON.parse(localStorage.getItem("posts"))
   : [];
 
-  let blogs = [];
-
+  const blogs_loader = document.getElementById("loader-container");
   // const api_url = "https://angry-leotard-frog.cyclic.app/api";
 
   fetch(`${api_url}/blogs`, {
@@ -12,6 +11,9 @@ let posts = localStorage.getItem("posts")
   })
     .then((response) => response.json())
     .then((data) => {
+      let blogs_container = document.getElementById("blogs-container");
+      blogs_container.style.display = "flex";
+      blogs_loader.style.display = "none";
       const results = data.data;
       renderPostsAll(results);
     });

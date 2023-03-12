@@ -42,9 +42,11 @@ signup_submit.addEventListener("click", (e) => {
         .then(res => res.json())
         .then((data) => {
             console.log(data);
+            if (data.data.role == "user"){
                 setTimeout(() => {
-                    window.location.href = "./login.html";
-                }, 2000);
+                    window.location.href = "./dashboard-home.html";
+                }, 3000);
+            }
         })
         .catch((err) => {
             console.log(err);

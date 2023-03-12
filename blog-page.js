@@ -1,14 +1,24 @@
-import { api_url } from "./index.js";
+import { api_url, date } from "./index.js";
 let posts = localStorage.getItem("posts")
   ? JSON.parse(localStorage.getItem("posts"))
   : [];
 
 console.log(posts);
 
+// COMMENTS CONTAINER
+let comments_container = document.getElementById("comments-container");
+
+
 // LIKES BUTTON
 const like_button = document.getElementById("like-icon");    
 const likes_count = document.getElementById("likes-number");
 let count_number = likes_count.innerText;
+
+// BLOG LOADER
+const blog_loader = document.getElementById("loader-container");
+
+// DOTS CONTAINER
+const dots_container = document.querySelectorAll(".carousel-dots");
 
 // API URL
 // const api_url = "https://angry-leotard-frog.cyclic.app/api";
@@ -26,11 +36,11 @@ fetch(`${api_url}/blogs/${blogId}`, {
 .then((data) => {
     const result = data.data;
     console.log(result)
+    blog_loader.style.display = "none";
     renderSingleBlog(result);
     renderComments(result.comments);
     renderLikes(result.likes);
-    createPages(result.comments);
-    console.log(result.comments);
+    dots_container[0].append(...createDots(result.comments));
 });
 
 
@@ -45,11 +55,15 @@ let blog_text = document.querySelector(".blog-text-container");
 
 let blog_image = document.querySelector(".blog-image");
 
+let author_profile = document.querySelector(".author-profile");
+
 let renderSingleBlog = (blog) => {
 
     // BLOG AUTHOR
 
     let blog_author = document.createElement("p");
+    blog_author.innerText = blog.author_name;
+    author_profile.insertBefore(blog_author, author_profile.childNodes[0]);
 
   // BLOG HEADING
   let blog_heading = document.createElement("h1");
@@ -78,35 +92,6 @@ let comment_name = document.getElementById("comment-name");
 let comment_email = document.getElementById("comment-email");
 let comment_body = document.getElementById("comment-body");
 let comment_submit = document.getElementById("comment-submit");
-let comments_container = document.querySelector(".comments-container");
-
-
-let comments = localStorage.getItem("comments") ? JSON.parse(localStorage.getItem("comments")) : [];
-
-const date = () => {
-  const now = new Date(Date.now());
-  const months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
-  const day = now.getDate();
-  const monthIndex = now.getMonth();
-  const year = now.getFullYear();
-
-  const formattedDate = `${day} ${months[monthIndex]} ${year}`;
-
-  return formattedDate;
-};
 
 let commentObj = {
 
@@ -138,6 +123,7 @@ const createComment = (e) => {
     .then((response) => response.json())
     .then((data) => {
         console.log(data);
+        window.location.reload()
     });
 
     localStorage.setItem("comments", JSON.stringify(comments));
@@ -186,68 +172,6 @@ let renderComments = (arr) => {
 
 }
 
-// <---- PAGINATION ---->
-
-
-let page_container = document.querySelector(".page-numbers-container");
-
-let currentPage = 0;
-
-
-let createPages = (arr) => {
-    let pages = document.createElement("ul");
-
-    arr.forEach((element, index) => {
-        let list = document.createElement("li");
-        let page_number = document.createElement("a");
-        page_number.classList.add("page-number");
-        if (index == 0) {
-            page_number.classList.add("page-current");
-        }
-        page_number.innerText = index + 1;
-        list.appendChild(page_number);
-        pages.appendChild(list);
-
-    });
-    page_container.appendChild(pages);
-    console.log(pages);
-}
-
-let showSlide = (slide) => {
-    Array.from(comments_container.children).forEach((child, index) => {
-        child.style.display = "none";
-      if (index == slide) {
-          child.style.display = "flex";
-      }
-    });
-    Array.from(page_container.children[0].children).forEach((child, index) => {
-        child.children[0].classList.remove("page-current");
-        if (index == slide) {
-            child.children[0].classList.add("page-current");
-        }
-    });
-};
-
-paginationLeft.addEventListener("click", (e) => {
-    e.preventDefault();
-    currentPage--;
-    if (currentPage < 0) {
-        currentPage = comments_container.children.length - 1;
-    }
-
-    showSlide(currentPage);
-
-});
-
-paginationRight.addEventListener("click", (e) => {
-        e.preventDefault();
-        currentPage++;
-        if (currentPage > comments_container.children.length - 1) {
-            currentPage = 0;
-        }
-    
-        showSlide(currentPage);
-});
 
 
 comment_submit.addEventListener("click", createComment);
@@ -291,3 +215,63 @@ like_button.addEventListener("click", (e) => {
 const renderLikes = (number) => {
     likes_count.innerText = number;
 };
+
+// CREATE DOTS
+const createDots = (arr) => {
+    let dotsArray = [];
+  
+    for (let i = 0; i < arr.length; i++) {
+      let dot = document.createElement("span");
+      dot.classList.add("dot");
+      if (i == 0) {
+        dot.classList.add("dot-fill");
+      }
+      dotsArray.push(dot);
+    }
+  
+    return dotsArray;
+  };
+
+  // SHOW CURRENT COMMENT 
+
+  let showSlide = (slide) => {
+    Array.from(comments_container.children).forEach((child, index) => {
+        child.style.display = "none";
+      if (index == slide) {
+          child.style.display = "flex";
+      }
+    });
+};
+
+// CAROUSEL BUTTONS
+let carouselLeft = Array.from(document.querySelectorAll(".carousel-left"));
+let carouselRight = Array.from(document.querySelectorAll(".carousel-right"));
+let slide = 0;
+
+carouselLeft.forEach((button) => {
+    button.addEventListener("click", (e) => {
+        e.preventDefault();
+        if (slide > 0) {
+            slide--;
+            showSlide(slide);
+        }
+        else {
+            slide = comments_container.children.length - 1;
+            showSlide(slide);
+        }
+    });
+});
+
+carouselRight.forEach((button) => {
+    button.addEventListener("click", (e) => {
+        e.preventDefault();
+        if (slide < comments_container.children.length - 1) {
+            slide++;
+            showSlide(slide);
+        }
+        else {
+            slide = 0;
+            showSlide(slide);
+        }
+    });
+});

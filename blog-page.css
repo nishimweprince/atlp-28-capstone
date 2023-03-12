@@ -207,6 +207,20 @@ a:hover {
     line-height: 2;
 }
 
+/* BLOGS LOADER */
+
+#loader-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20vh;
+}
+
+#blog-loader {
+    font-size: 1.625rem;
+    color: #58287F;
+}
+
 /* <--- LIKES SECTION ---> */
 
 .likes-section {
@@ -687,10 +701,11 @@ form input[type="submit"] {
 
 /* SKILLS SECTION  */
 
-.skills-carousel {
+.comments-carousel {
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 10px;
 }
 
 .carousel-direction a {
@@ -705,7 +720,7 @@ form input[type="submit"] {
 }
 
 .carousel-direction a svg {
-    height: 20px;
+    height: 10px;
 }
 
 .carousel-dots {
@@ -738,6 +753,7 @@ form input[type="submit"] {
 /* <----- MEDIA QUERIES ------->  */
 
 @media screen and (max-width: 420px) {
+
 
     /* <---- RESPONSIVE NAVBAR ----> */
 
@@ -894,20 +910,14 @@ form input[type="submit"] {
         display: block;
     }
 
-    /* PAGINATION  */
+    /* CAROUSEL DOTS */
 
-    .pagination {
+    .carousel-dots {
         display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 20px;
-        gap: 20px;
     }
 
-    .pagination a {
+    .carousel-direction {
         display: flex;
-        justify-content: center;
-        align-items: center;
     }
 
 

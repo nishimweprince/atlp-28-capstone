@@ -691,6 +691,11 @@
     display: none;
   }
 
+  #contact-form-loader {
+    display: none;
+    color: #58287F;
+  }
+
   /* FOOTER DOWN  */
 
   .copyright-heading {

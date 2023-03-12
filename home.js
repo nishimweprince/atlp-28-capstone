@@ -88,3 +88,5 @@ window.onload = () => {
     dotsContainer[index].append(...createDots(box.children));
   });
 };
+
+export {createDots}

@@ -120,7 +120,8 @@ newsletter_submit.addEventListener("click", (e) => {
     const contact_name = document.getElementById("contact-form-name");
     const contact_email = document.getElementById("contact-form-email");
     const contact_message = document.getElementById("contact-form-message");
-
+    const contact_form_loader = document.getElementById("contact-form-loader");
+    
     const emailRegex =
       /^([a-zA-Z0-9\._]+)@([a-zA-Z0-9])+.([a-z]+)(.[a-z]+)(.[a-z]+)?$/;
     const nameRegex = /^\S.*\S$/;
@@ -133,6 +134,9 @@ newsletter_submit.addEventListener("click", (e) => {
       nameRegex.test(contact_name.value) &&
       nameRegex.test(contact_message.value)
     ) {
+
+      contact_form_loader.style.display = "block";
+
       let messageObj = {
         name: contact_name.value,
         email: contact_email.value,
@@ -150,13 +154,19 @@ newsletter_submit.addEventListener("click", (e) => {
         .then((res) => res.json())
         .then((data) => {
           console.log(data);
-        });
+          contact_form_loader.style.display = "none";
+          contact_form_error.style.display = "none";
 
-      contact_form_error.style.display = "none";
-      contact_form_success.style.display = "block";
-      contact_name.value = "";
-      contact_email.value = "";
-      contact_message.value = "";
+          setTimeout(() => {
+            contact_form_success.style.display = "none";
+          }, 4000);
+
+          contact_form_success.style.display = "block";
+          contact_name.value = "";
+          contact_email.value = "";
+          contact_message.value = "";
+        })
+        .catch((err) => console.log(err));
 
       // <---- SEND EMAIL ---->
 
@@ -172,7 +182,6 @@ newsletter_submit.addEventListener("click", (e) => {
         `,
       })
         .then((message) => {
-          alert("We have received your message in our inbox");
           console.log(message, contact_email.value);
         })
         .catch((error) => {

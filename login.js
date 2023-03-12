@@ -35,12 +35,17 @@ login_submit.addEventListener("click", (e) => {
         .then(res => res.json())
         .then((data) => {
             document.cookie = `token=${data.token}; Path=/;`;
-            console.log(data)
+            const role = data.data.role
 
-            if (data.token) {
+            if (role == "user"){
+                setTimeout(() => {
+                    window.location.href = "./blogs.html";
+                }, 2000);
+            }
+            else {
                 setTimeout(() => {
                     window.location.href = "./dashboard-home.html";
-                }, 3000);
+                }, 2000);
             }
 
         })

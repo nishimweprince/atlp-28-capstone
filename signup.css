@@ -204,6 +204,15 @@ a:hover {
     padding: 5px;
 }
 
+.login-button {
+    /* border: 2px solid red; */
+    cursor: pointer;
+
+    padding: 20px 15px;
+    border: 1px solid var(--purple);
+    border-radius: 5px;
+}
+
 /* <--- SIGNUP VALIDATIONS ---> */
 
 #signup-email-error, #signup-password-error, #signup-confirm-password-error, #signup-form-error, #signup-username-error {

@@ -78,14 +78,11 @@
 
         <div class="hero">
 
-            <div class="author">
+            <div class="author" id="author">
 
                 <img src="./images/nishimwe-formal.jpg" alt="Author image">
 
-                <section>
-                    <p>
-                        Nishimwe Prince
-                    </p>
+                <section class="author-profile">
                     <ul class="author-icons">
                         <li><a href="https://www.twitter.com/nishimweprince"><img src="./images/twitter-icon.png" alt="Author social media icon"></a></li>
                         <li><a href="https://www.linkedin.com/in/nishimweprince"><img src="./images/linkedin-icon.png" alt="Author social media icon"></a></li>
@@ -106,9 +103,19 @@
 
     </div>
 
+    <!-- LOADER SECTION -->
+
+    <div id="loader-container">
+
+        <p id="blog-loader">
+            Blog is loading...
+        </p>
+
+    </div>
+
     <!-- BLOG TEXT SECTION -->
 
-    <div class="blog-text">
+    <div class="blog-text" id="blog-text">
 
         <div class="blog-text-container">
 
@@ -179,36 +186,36 @@
 
         <div class="comments-carousel">
 
+            <div class="carousel-direction carousel-left responsive">
+                <a href="#">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+                    </svg>
 
-            <div class="comments-container">
+                </a>
+            </div>
+
+            <div class="comments-container" id="comments-container">
                 
+            </div>
+
+            <div class="carousel-direction carousel-right responsive">
+                <a href="#">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                    </svg>
+
+                </a>
             </div>
 
         </div>
 
-        <!-- PAGINATION  -->
-
-        <div class="pagination">
-
-            <a href="#" class="pagination-direction direction-left">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                    stroke="currentColor" class="w-6 h-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
-                </svg>
-            </a>
-
-            <span class="page-numbers-container">
-                
-            </span>
-
-            <a href="#" class="pagination-direction direction-right">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                    stroke="currentColor" class="w-6 h-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-                </svg>
-            </a>
+        <div class="carousel-dots responsive">
 
         </div>
+
 
     </div>
 
@@ -249,7 +256,7 @@
     
                         <li>
                             <a id="admin-link" href="./login.html">
-                                Admin
+                                Login
                             </a>
                         </li>
     
