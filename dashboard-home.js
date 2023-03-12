@@ -52,18 +52,16 @@ blog_submit.addEventListener("click", (e) => {
   const cookie = document.cookie.split('=')[1];
   console.log(cookie);
 
-//   fetch(`${url}/blogs`, {
-//       method: "POST",
-//       headers: { "Content-Type": "application/json",
-//       "credentials": `${cookie}`
-//   },
-//       body: JSON.stringify(postObj)
-//   })
-//   .then(res => res.json())
-//   .then(data => console.log(data))
-//   .catch(err => console.log(err));
-// });
-
+  fetch(`${url}/blogs`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json",
+      "credentials": `${cookie}`
+  },
+      body: JSON.stringify(postObj)
+  })
+  .then(res => res.json())
+  .then(data => console.log(data))
+  .catch(err => console.log(err));
 });
 
 const validateSocials = (twitter, linkedin, github) => {
@@ -98,4 +96,21 @@ hamburger_menu[1].addEventListener("click", () => {
   hamburger_menu[0].classList.toggle("is-not-active");
   hamburger_menu[1].classList.toggle("is-not-active");
   responsive_nav.classList.toggle("hide-nav");
+});
+
+// LOGOUT BUTTON
+const logout = document.getElementById("dashboard-logout");
+
+logout.addEventListener("click", (e) => {
+  e.preventDefault();
+  document.cookie.split(";").forEach((c) => {
+    document.cookie = c
+      .replace(/^ +/, "")
+      .replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
+  });
+  sessionStorage.setItem("isLoggedIn", false);
+  console.log("Logged out")
+  setTimeout(() => {
+    window.location.href = "./login.html";
+  }, 1000);
 });

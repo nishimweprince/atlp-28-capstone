@@ -49,7 +49,9 @@ var Email = {
   },
 };
 
-const api_url = "https://angry-leotard-frog.cyclic.app/api"
+const api_url = "https://angry-leotard-frog.cyclic.app/api";
+
+const local_url = "http://localhost:4000/api";
 
 let messages = localStorage.getItem('messages')
 ? JSON.parse(localStorage.getItem('messages')) : [];
@@ -92,6 +94,7 @@ let contact_form_error = document.getElementById("contact-form-error");
 
 let newsletter_email = document.getElementById("newsletter-email");
 let newsletter_submit = document.getElementById("newsletter-submit");
+let newsletter_loader = document.getElementById("newsletter-loader");
 
 newsletter_submit.addEventListener("click", (e) => {
     e.preventDefault();
@@ -100,7 +103,29 @@ newsletter_submit.addEventListener("click", (e) => {
     if (emailRegex.test(newsletter_email.value)) {
         newsletter_success.style.display = "block";
         newsletter_error.style.display = "none";
-        newsletter_email.value = "";
+        newsletter_loader.style.display = "block";
+
+        const email = newsletter_email.value;
+
+        fetch(`${api_url}/newsletter`, {
+          method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({email})
+        })
+        .then((res) => res.json())
+        .then((data) => {
+            console.log(data);
+            newsletter_loader.style.display = "none";
+            newsletter_error.style.display = "none";
+            newsletter_email.value = "";
+        })
+        .catch((err) => {
+            console.log(err);
+            newsletter_loader.style.display = "none";
+        });
+
     }
 
     else {
@@ -224,4 +249,4 @@ const date = () => {
   return formattedDate;
 };
 
-export { api_url, date };
+export { api_url, local_url,date };

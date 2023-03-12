@@ -691,7 +691,7 @@
     display: none;
   }
 
-  #contact-form-loader {
+  #contact-form-loader, #newsletter-loader {
     display: none;
     color: #58287F;
   }
