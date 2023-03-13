@@ -363,3 +363,15 @@ paginationRight.addEventListener("click", (e) => {
 
   showSlide(currentPage);
 });
+
+// CLOSE MODAL
+const close_modal = document.querySelector(".close-icon");
+
+close_modal.addEventListener("click", (e) => {
+
+  const edit_modal_container = document.querySelector(".edit-modal-container");
+
+  e.preventDefault();
+
+  edit_modal_container.style.display = "none";
+});

@@ -428,7 +428,6 @@ body {
     gap: 20px;
     align-items: center;
     width: 100%;
-
 }
 
 .input-container {
@@ -483,6 +482,29 @@ body {
 #blog-update-error, #blog-delete-error {
     color: red;
     display: none;
+}
+
+/* CLOSE MODAL */
+
+.close-icon {
+    display: flex;
+    flex-direction: column;
+    width: 10%;
+    align-self: flex-end;
+
+    position: absolute;
+}
+
+#modal-close-button {
+    display: flex;
+    justify-content: flex-end;
+    justify-self: flex-end;
+}
+
+#modal-close-button svg {
+    height: 40px;
+    color: var(--purple);
+    cursor: pointer;
 }
 
 /* <----- RESPONSIVENESS------->  */
