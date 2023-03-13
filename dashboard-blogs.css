@@ -453,6 +453,18 @@ body {
     border: 1px solid var(--purple);
 }
 
+/* FEEDBACK MESSAGES */
+
+#blog-update-loader, #blog-update-success {
+    display: none;
+    color: var(--purple);
+}
+
+#blog-update-error {
+    color: red;
+    display: none;
+}
+
 /* <----- RESPONSIVENESS------->  */
 
   /* HAMBURGER MENU */
