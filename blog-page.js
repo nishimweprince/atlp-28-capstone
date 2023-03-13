@@ -173,11 +173,7 @@ let renderComments = (arr) => {
 }
 
 
-
-comment_submit.addEventListener("click", createComment);
-
 // CREATE LIKES
-
 like_button.addEventListener("click", (e) => {
     e.preventDefault();
 

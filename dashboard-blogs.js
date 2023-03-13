@@ -3,15 +3,23 @@ if (sessionStorage.getItem("isLoggedIn") !== "true") {
 }
 
 const wrapText = (text) => {
-  let wordCount = 30;
+  let wordCount = 15;
   let words = text.split(" ");
   let truncatedText = "";
   if (words.length > wordCount) {
     truncatedText = words.slice(0, wordCount).join(" ");
   }
+  else {
+    truncatedText = words.join(" ");
+  }
 
   return truncatedText + "...";
 };
+
+// DOTS CONTAINER
+
+const dots_container = document.querySelectorAll(".carousel-dots");
+
 
 //NAVBAR
 
@@ -33,12 +41,11 @@ hamburger_menu[1].addEventListener("click", () => {
 // <---- DASHBOARD INBOX ---->
 
 // API URL
-
 const api_url = "https://angry-leotard-frog.cyclic.app/api";
 
 // COOKIE
-
 const cookie = document.cookie.split("=")[1];
+
 
 // FETCH BLOGS
 
@@ -50,7 +57,8 @@ fetch(`${api_url}/blogs`, {
     let results = data.data;
     console.log(results);
     renderBlogs(results);
-    createPages(results);
+    dots_container[0].append(...createDots(results));
+    console.log(dots_container[0]);
   });
 
 let blogs_container = document.querySelector(".posts-container");
@@ -305,21 +313,20 @@ let page_container = document.querySelector(".page-numbers-container");
 
 let currentPage = 0;
 
-let createPages = (arr) => {
-  let pages = document.createElement("ul");
+// CREATE DOTS
+const createDots = (arr) => {
+  let dotsArray = [];
 
-  arr.forEach((element, index) => {
-    let list = document.createElement("li");
-    let page_number = document.createElement("a");
-    page_number.classList.add("page-number");
-    if (index == 0) {
-      page_number.classList.add("page-current");
+  for (let i = 0; i < arr.length; i++) {
+    let dot = document.createElement("span");
+    dot.classList.add("dot");
+    if (i == 0) {
+      dot.classList.add("dot-fill");
     }
-    page_number.innerText = index + 1;
-    list.appendChild(page_number);
-    pages.appendChild(list);
-  });
-  page_container.appendChild(pages);
+    dotsArray.push(dot);
+  }
+
+  return dotsArray;
 };
 
 let showSlide = (slide) => {
@@ -327,15 +334,14 @@ let showSlide = (slide) => {
     child.style.display = "none";
     if (index == slide) {
       child.style.display = "flex";
-      console.log(child);
     }
   });
-  Array.from(page_container.children[0].children).forEach((child, index) => {
-    child.children[0].classList.remove("page-current");
+  Array.from(dots_container[0].children).forEach((dot, index) => {
+    dot.classList.remove("dot-fill");
     if (index == slide) {
-      child.children[0].classList.add("page-current");
+        dot.classList.add("dot-fill");
     }
-  });
+});
 };
 
 paginationLeft.addEventListener("click", (e) => {

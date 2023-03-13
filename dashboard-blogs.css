@@ -238,7 +238,7 @@ body {
     flex-direction: column;
     align-items: center;
     width: 100%;
-    height: fit-content;
+    height: 60vh;
 
     /* border: 2px solid red; */
 }
@@ -258,6 +258,7 @@ body {
     border: 1px solid var(--purple);
     border-radius: 10px;
     width: 50%;
+    height: 100%;
 
 }
 
@@ -270,7 +271,7 @@ body {
     justify-content: center;
     /* border: 2px solid red; */
 
-    height: 30%;
+    height: 20%;
 
 }
 
@@ -333,7 +334,7 @@ body {
     color: var(--purple);
     font-size: 16px;
     font-weight: 500;
-    padding: 20px;
+    padding: 15px;
     background-color: var(--purple);
     border-radius: 50%;
     display: flex;
@@ -367,6 +368,25 @@ body {
 
 .carousel-direction a svg {
     height: 25px;
+}
+
+.carousel-dots {
+    /* border: 2px solid red; */
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.dot {
+    height: 12px;
+    width: 12px;
+    border-radius: 50%;
+    background-color: white;
+    border: 1px solid #58287F;
+}
+
+.dot-fill {
+    background-color: #58287F;
 }
 
 /* <--- EDIT MODAL ---> */
