@@ -41,6 +41,10 @@ fetch(`${api_url}/blogs/${blogId}`, {
     renderComments(result.comments);
     renderLikes(result.likes);
     dots_container[0].append(...createDots(result.comments));
+
+    document.title = `${result.title}`;
+
+    console.log(result.title);
 });
 
 
@@ -123,7 +127,7 @@ const createComment = (e) => {
         
         setTimeout(() => {
             window.location.reload();
-        }, 5000);
+        }, 1500);
 
         comment_name.value = "";
         comment_email.value = "";
