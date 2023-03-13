@@ -8,6 +8,9 @@ console.log(posts);
 // COMMENTS CONTAINER
 let comments_container = document.getElementById("comments-container");
 
+// MANIPULATE TAB URL
+const url = window.location.href;
+
 
 // LIKES BUTTON
 const like_button = document.getElementById("like-icon");    
@@ -45,6 +48,11 @@ fetch(`${api_url}/blogs/${blogId}`, {
     document.title = `${result.title}`;
 
     console.log(result.title);
+
+    // MANIPULATE TAB URL
+    const newUrl = url + '/' + result.title.toLowerCase().split(" ").join("-");
+
+    window.history.pushState({ path: newUrl }, "", newUrl);
 });
 
 

@@ -57,7 +57,7 @@ function renderPostsAll(arr) {
 
   console.log(post._id);
 
-  blog_box.addEventListener("click", (e) => {
+  blog_box.addEventListener("click", () => {
     localStorage.setItem("blogId", post._id);
   });
 
