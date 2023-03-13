@@ -106,12 +106,9 @@ let commentObj = {
 const createComment = (e) => {
 
     e.preventDefault();
-
     commentObj.name = comment_name.value;
     commentObj.email = comment_email.value;
     commentObj.body = comment_body.value;
-
-    comments.push(commentObj);
 
     fetch(`${api_url}/blogs/${blogId}/comment`, {
         method: "PUT",
@@ -123,16 +120,17 @@ const createComment = (e) => {
     .then((response) => response.json())
     .then((data) => {
         console.log(data);
-        window.location.reload()
+        
+        setTimeout(() => {
+            window.location.reload();
+        }, 5000);
+
+        comment_name.value = "";
+        comment_email.value = "";
+        comment_body.value = "";
     });
 
-    localStorage.setItem("comments", JSON.stringify(comments));
 
-    comment_name.value = "";
-    comment_email.value = "";
-    comment_body.value = "";
-
-    console.log(comment_submit);
 
 };
 
@@ -140,13 +138,13 @@ const createComment = (e) => {
 
 let renderComments = (arr) => {
 
-    console.log(arr)
+    // console.log(arr)
 
     arr.forEach((comment) => {
 
     const date = new Date(comment.createdAt);
 
-    console.log(date);
+    // console.log(date);
 
     let comment_box = document.createElement("div");
     comment_box.classList.add("comment-box");
@@ -271,3 +269,5 @@ carouselRight.forEach((button) => {
         }
     });
 });
+
+comment_submit.addEventListener("click", createComment);
