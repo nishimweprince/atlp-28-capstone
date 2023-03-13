@@ -52,7 +52,7 @@ fetch(`${api_url}/blogs/${blogId}`, {
     // MANIPULATE TAB URL
     const newUrl = url + '/' + result.title.toLowerCase().split(" ").join("-");
 
-    window.history.pushState({ path: newUrl }, "", newUrl);
+    window.history.pushState({ path: newUrl }, result.title, newUrl);
 });
 
 
@@ -134,7 +134,7 @@ const createComment = (e) => {
         console.log(data);
         
         setTimeout(() => {
-            window.location.reload();
+            window.location.href = url;
         }, 1500);
 
         comment_name.value = "";
