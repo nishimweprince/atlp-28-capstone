@@ -455,12 +455,12 @@ body {
 
 /* FEEDBACK MESSAGES */
 
-#blog-update-loader, #blog-update-success {
+#blog-update-loader, #blog-update-success, #blog-delete-success, #blog-delete-loader {
     display: none;
     color: var(--purple);
 }
 
-#blog-update-error {
+#blog-update-error, #blog-delete-error {
     color: red;
     display: none;
 }

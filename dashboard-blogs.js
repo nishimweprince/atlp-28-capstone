@@ -106,18 +106,18 @@ let renderBlogs = (arr) => {
 
     // EDIT BUTTON EVENT LISTENERS
     edit_btn.addEventListener("click", (e) => {
-
       e.preventDefault();
 
-      
-      let edit_modal_container = document.querySelector(".edit-modal-container");
+      let edit_modal_container = document.querySelector(
+        ".edit-modal-container"
+      );
 
       fetch(`${api_url}/blogs/${post.id}`, {
         method: "GET",
       })
         .then((response) => response.json())
         .then((data) => {
-            let edit_form = document.querySelector(".edit-form-container");
+          let edit_form = document.querySelector(".edit-form-container");
           console.log(data);
 
           const blog = data.data;
@@ -162,9 +162,14 @@ let renderBlogs = (arr) => {
 
             // DEFINE UPDATE FUNCTION
 
-            let blog_update_loader = document.querySelector("#blog-update-loader");
-            let blog_update_success = document.querySelector("#blog-update-success");
-            let blog_update_error = document.querySelector("#blog-update-error");
+            let blog_update_loader = document.querySelector(
+              "#blog-update-loader"
+            );
+            let blog_update_success = document.querySelector(
+              "#blog-update-success"
+            );
+            let blog_update_error =
+              document.querySelector("#blog-update-error");
 
             blog_update_loader.style.display = "block";
             blog_update_success.style.display = "none";
@@ -181,31 +186,30 @@ let renderBlogs = (arr) => {
             };
 
             fetch(`${api_url}/blogs/${blog._id}`, {
-
-                method: "PUT",
-                headers: {
-                    "Content-Type": "application/json",
-                    "credentials": `${cookie}`
-                },
-                body: JSON.stringify(blogUpdated)
+              method: "PUT",
+              headers: {
+                "Content-Type": "application/json",
+                credentials: `${cookie}`,
+              },
+              body: JSON.stringify(blogUpdated),
             })
-            .then((response) => response.json())
-            .then((data) => {
+              .then((response) => response.json())
+              .then((data) => {
                 console.log(data);
 
                 blog_update_loader.style.display = "none";
                 blog_update_success.style.display = "block";
 
                 setTimeout(() => {
-                    window.location.reload();
+                  window.location.reload();
                 }, 1500);
-            })
-            .catch((err) => {
+              })
+              .catch((err) => {
                 console.log(err);
                 blog_update_error.style.display = "block";
                 blog_update_success.style.display = "none";
                 blog_update_loader.style.display = "none";
-            });
+              });
 
             console.log(blog._id, blogUpdated);
           });
@@ -214,18 +218,6 @@ let renderBlogs = (arr) => {
           edit_form.appendChild(edit_cta);
         });
 
-      // ADD DELETE BUTTON
-      const delete_btn = document.createElement("a");
-      delete_btn.setAttribute("href", "#");
-      delete_btn.setAttribute("id", "blog-delete");
-      delete_btn.innerHTML = `
-    <img src="./images/delete-icon.png" alt="" id="delete-icon">
-    `;
-
-      // APPEND BUTTONS TO CTA
-      blog_cta.appendChild(edit_btn);
-      blog_cta.appendChild(delete_btn);
-
       blog_box.appendChild(blog_cta);
 
       blogs_container.appendChild(blog_box);
@@ -233,11 +225,74 @@ let renderBlogs = (arr) => {
       console.log(blog_box);
     });
 
+    // ADD DELETE BUTTON
+    const delete_btn = document.createElement("a");
+    delete_btn.setAttribute("href", "#");
+    delete_btn.setAttribute("id", "blog-delete");
+    delete_btn.innerHTML = `<img src="./images/delete-icon.png" alt="" id="delete-icon">`;
+
+    // BLOG DELETE FEEDBACKS
+
+    const delete_feedback = document.createElement("span");
+    delete_feedback.classList.add("delete-feedback");
+
+    const delete_loader = document.createElement("p");
+    delete_loader.setAttribute("id", "blog-delete-loader");
+    delete_loader.innerHTML = "You are deleting this blog...";
+
+    const delete_success = document.createElement("p");
+    delete_success.setAttribute("id", "blog-delete-success");
+    delete_success.innerHTML = "Blog deleted successfully";
+
+    const delete_error = document.createElement("p");
+    delete_error.setAttribute("id", "blog-delete-error");
+    delete_error.innerHTML = "Could not delete blog, please try again";
+
+    delete_feedback.appendChild(delete_loader);
+    delete_feedback.appendChild(delete_success);
+    delete_feedback.appendChild(delete_error);
+
+    // DELETE BUTTON EVENT LISTENERS
+    delete_btn.addEventListener("click", (e) => {
+      e.preventDefault();
+
+      delete_loader.style.display = "block";
+      delete_success.style.display = "none";
+      delete_error.style.display = "none";
+
+      fetch(`${api_url}/blogs/${post.id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          credentials: `${cookie}`,
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+
+          delete_loader.style.display = "none";
+          delete_success.style.display = "block";
+          delete_error.style.display = "none";
+
+          setTimeout(() => {
+            window.location.reload();
+          }, 1500);
+        })
+        .catch((err) => {
+          console.log(err);
+          delete_loader.style.display = "none";
+          delete_success.style.display = "none";
+          delete_error.style.display = "block";
+        });
+    });
+
     blog_cta.appendChild(edit_btn);
+    blog_cta.appendChild(delete_btn);
 
     blog_box.appendChild(blog_cta);
+    blog_box.appendChild(delete_feedback);
     blogs_container.appendChild(blog_box);
-
   });
 };
 
