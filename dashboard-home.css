@@ -342,6 +342,20 @@ body {
     justify-content: center;
 }
 
+/* CREATE BLOG FEEDBACK */
+
+#create-blog-loader, #create-blog-success, #create-blog-lagging {
+    display: none;
+    color: #58287F;
+    text-align: center;
+}
+
+#create-blog-error, #validation-error {
+    display: none;
+    color: red;
+    text-align: center;
+}
+
 /* <----- RESPONSIVENESS------->  */
 
   /* HAMBURGER MENU */
